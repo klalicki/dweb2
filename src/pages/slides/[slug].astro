@@ -11,14 +11,29 @@ export async function getStaticPaths() {
 }
 
 const pageData = await getCollection("slides");
+const globbedFiles = Object.values(
+  import.meta.glob(`/src/content/classes/*/slides.md`, {
+    eager: true,
+  })
+);
+
+console.log(globbedFiles);
+
 const targetData = pageData.find((slide) => {
-  console.log(slide);
+  // console.log(slide);
   return slide.id.split("/")[0] == slug;
 });
-const marp = new Marp();
+const marp = new Marp({
+  script: {
+    source: "cdn",
+  },
+});
 const mdData = targetData?.body;
-const { html, css } = marp.render(mdData,);
+const { html, css } = marp.render(mdData);
+const marpTotal = marp.render(mdData);
+const marpKeys = Object.keys(marpTotal);
 ---
 
+<!-- {JSON.stringify(marpKeys)} -->
 <Fragment set:html={html} />
 <style set:html={css}></style>
