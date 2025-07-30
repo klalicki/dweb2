@@ -1,23 +1,24 @@
-# **Marp**
+## Welcome to Design For The Web 2
 
-Markdown Presentation Ecosystem
-
-https://marp.app/
+Let's make some websites!
 
 ---
 
-# How to write slides
+## Today in Class
 
-Split pages by horizontal ruler (`---`). It's very simple! :satisfied:
-
-```markdown
-# Slide 1
-
-foobar
+- Welcome/Introductions
+- Syllabus Overview
+- Course Logistics
+- Reviewing HTML/CSS
 
 ---
 
-# Slide 2
+## Intro to HTML/CSS
 
-foobar
-```
+---
+
+## <h2 class="r-fit-text">BIG</h2>
+
+---
+
+![Bobby Tables](bobby-tables.png)

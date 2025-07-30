@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 
 const { slug } = Astro.params;
+
 export async function getStaticPaths() {
   const slides = await getCollection("slides");
   return slides.map((slide) => {
@@ -9,21 +10,12 @@ export async function getStaticPaths() {
   });
 }
 
-const pageData = await getCollection("slides");
-const globbedFiles = import.meta.glob(`/src/content/classes/*/slides.md`, {
+const pageData = import.meta.glob(`/src/content/classes/*/slides.md`, {
   eager: true,
   query: "?raw",
 })[`/src/content/classes/${slug}/slides.md`];
 
-const content = globbedFiles.default;
-// console.log(content);
-
-const targetData = pageData.find((slide) => {
-  // console.log(slide);
-  return slide.id.split("/")[0] == slug;
-});
-
-const mdData = targetData?.body;
+const content = pageData.default;
 ---
 
 <!-- {JSON.stringify(marpKeys)} -->
@@ -39,11 +31,13 @@ const mdData = targetData?.body;
   import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
   let deck = new Reveal({
     plugins: [Markdown],
+    transition: "convex",
+    slideNumber: true,
   });
   deck.initialize();
 </script>
 <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
-<link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/black.css" />
+<link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/night.css" />
 <style>
   textarea {
     display: none;
