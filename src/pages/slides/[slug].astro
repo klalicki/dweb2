@@ -1,8 +1,38 @@
 ---
 import { getCollection } from "astro:content";
-import { marked } from "marked";
-
+import { remark } from "remark";
+import { visit } from "unist-util-visit";
+import { getImage } from "astro:assets";
 const { slug } = Astro.params;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/classes/**/*.{jpeg,jpg,png,gif}"
+);
+console.log("Images:", images);
+
+const replaceAstroImages = () => {
+  return () => (tree) => {
+    visit(tree, "image", (node) => {
+      if (node.url.startsWith("http")) {
+        // Skip external images
+        return;
+      } else {
+        const imageUrl = node.url;
+        console.log(imageUrl, slug);
+        const imagePath = `/src/content/classes/${slug}/${imageUrl}`;
+        // Async logic cannot be used here directly
+        // You may need to pre-process images before remark or refactor this logic
+        // For now, just log if image exists
+        if (images[imagePath]) {
+          // You cannot await here; consider handling this outside of visit
+          console.log("Found image:", imagePath);
+        }
+      }
+      node.url = node.url.replace("example.com", "cdn.example.com");
+      node.alt += " (updated)";
+    });
+  };
+};
 
 export async function getStaticPaths() {
   const slides = await getCollection("slides");
@@ -17,7 +47,9 @@ const pageData = import.meta.glob(`/src/content/classes/*/slides.md`, {
 })[`/src/content/classes/${slug}/slides.md`];
 
 const content = pageData.default;
-marked
+
+const processedMd = await remark().use(replaceAstroImages()).process(content);
+console.log(processedMd.value);
 ---
 
 <!-- {JSON.stringify(marpKeys)} -->
