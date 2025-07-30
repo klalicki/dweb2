@@ -10,5 +10,6 @@
   },
   "dependencies": {
     "astro": "^5.12.4",
+    "reveal.js": "^5.2.1"
   }
 }

@@ -1,7 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import { Marp } from "@marp-team/marp-core";
-import { Element } from "@marp-team/marpit";
 
 const { slug } = Astro.params;
 export async function getStaticPaths() {
@@ -24,33 +22,10 @@ const targetData = pageData.find((slide) => {
   // console.log(slide);
   return slide.id.split("/")[0] == slug;
 });
-const marp = new Marp({
-  // inlineSVG: false,
-  container: [
-    new Element("div", { class: "swiper" }),
-    new Element("div", { class: "swiper-wrapper" }),
-  ],
-  slideContainer: new Element("div", { class: "swiper-slide" }),
-});
+
 const mdData = targetData?.body;
-const { html, css } = marp.render(content);
 ---
 
 <!-- {JSON.stringify(marpKeys)} -->
 <Fragment set:html={html} />
 <style set:html={css}></style>
-
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
-<style>
-  .swiper {
-    width: 100vw;
-    height: 100vh;
-  }
-</style>
-<script>
-  import Swiper from "swiper";
-  const swiper = new Swiper(".swiper", {});
-</script>
