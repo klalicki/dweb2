@@ -27,5 +27,6 @@ const mdData = targetData?.body;
 ---
 
 <!-- {JSON.stringify(marpKeys)} -->
-<Fragment set:html={html} />
-<style set:html={css}></style>
+<section data-markdown>
+  <textarea data-template set:html={content} />
+</section>
