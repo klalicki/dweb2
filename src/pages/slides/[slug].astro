@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { marked } from "marked";
 
 const { slug } = Astro.params;
 
@@ -16,6 +17,7 @@ const pageData = import.meta.glob(`/src/content/classes/*/slides.md`, {
 })[`/src/content/classes/${slug}/slides.md`];
 
 const content = pageData.default;
+marked
 ---
 
 <!-- {JSON.stringify(marpKeys)} -->

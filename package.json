@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "astro": "^5.12.4",
+    "remark": "^15.0.1",
     "reveal.js": "^5.2.1"
   },
   "devDependencies": {
