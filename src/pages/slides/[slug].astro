@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import { Marp } from "@marp-team/marp-core";
+
+const { slug } = Astro.params;
+export async function getStaticPaths() {
+  const slides = await getCollection("slides");
+  return slides.map((slide) => {
+    return { params: { slug: slide.id.split("/")[0] } };
+  });
+}
+
+const pageData = await getCollection("slides");
+const targetData = pageData.find((slide) => {
+  console.log(slide);
+  return slide.id.split("/")[0] == slug;
+});
+const marp = new Marp();
+const mdData = targetData?.body;
+const { html, css } = marp.render(mdData,);
+---
+
+<Fragment set:html={html} />
+<style set:html={css}></style>
