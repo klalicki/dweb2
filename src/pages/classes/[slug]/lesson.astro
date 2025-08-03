@@ -16,6 +16,6 @@ const lesson = await getEntry("lessons", slug);
 const lessonText = lesson?.body;
 ---
 
-<h1>LESSON</h1>
+<h1>{lesson?.data.title}</h1>
 {JSON.stringify(lesson)}
 <Fragment set:html={lessonText} />

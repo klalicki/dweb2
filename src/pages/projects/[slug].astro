@@ -7,7 +7,6 @@ const { slug } = Astro.params;
 console.log("slug", slug);
 export async function getStaticPaths() {
   const pages = await getCollection("projects");
-  console.log("pages", pages);
   return pages.map((page) => {
     return { params: { slug: page.id } };
   });
@@ -17,6 +16,6 @@ const project = await getEntry("projects", slug);
 const projectText = project?.body;
 ---
 
-<h1>PROJECT</h1>
+<h1>{project?.data.title}</h1>
 <Code code={JSON.stringify(project, null, 2)} lang="json" />
 <Fragment set:html={projectText} />
