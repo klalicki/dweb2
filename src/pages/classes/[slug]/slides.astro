@@ -6,6 +6,7 @@ import remarkStringify from "remark-stringify";
 import { visit } from "unist-util-visit";
 import { getImage } from "astro:assets";
 import Layout from "../../../layouts/Layout.astro";
+import { getEntry } from "astro:content";
 const { slug } = Astro.params;
 
 // collect all image files from the classes folder with glob
@@ -42,7 +43,7 @@ const replaceAstroImages = () => {
       const imagePath = node.url;
       const processedPath = `/src/content/classes/${slug}/${imagePath}`;
       const imageImport = images[processedPath]();
-      console.log(imageImport);
+      // console.log(imageImport);
       const processedImage = await getImage({
         src: imageImport,
         width: 1200,
@@ -62,12 +63,9 @@ export async function getStaticPaths() {
   });
 }
 
-const pageData = import.meta.glob(`/src/content/classes/*/slides.md`, {
-  eager: true,
-  query: "?raw",
-})[`/src/content/classes/${slug}/slides.md`];
+const slideData = await getEntry("slides", slug);
 
-const content = pageData.default;
+const content = slideData?.body;
 
 // const processedMd = await remark().use(replaceAstroImages).process(content);
 const processedMdObj = await unified()
@@ -78,29 +76,27 @@ const processedMdObj = await unified()
 const processedMd = processedMdObj.value;
 ---
 
-<Layout>
-  <div class="reveal">
-    <div class="slides">
-      <section data-markdown>
-        <textarea data-template set:html={processedMd} />
-      </section>
-    </div>
+<div class="reveal">
+  <div class="slides">
+    <section data-markdown>
+      <textarea data-template set:html={processedMd} />
+    </section>
   </div>
-  <script>
-    import Reveal from "reveal.js";
-    import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
-    let deck = new Reveal({
-      plugins: [Markdown],
-      transition: "convex",
-      slideNumber: true,
-    });
-    deck.initialize();
-  </script>
-  <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
-  <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/night.css" />
-  <style>
-    textarea {
-      display: none;
-    }
-  </style>
-</Layout>
+</div>
+<script>
+  import Reveal from "reveal.js";
+  import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
+  let deck = new Reveal({
+    plugins: [Markdown],
+    transition: "convex",
+    slideNumber: true,
+  });
+  deck.initialize();
+</script>
+<link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+<link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/night.css" />
+<style>
+  textarea {
+    display: none;
+  }
+</style>
