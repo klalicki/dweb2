@@ -5,6 +5,7 @@ import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import { visit } from "unist-util-visit";
 import { getImage } from "astro:assets";
+import Layout from "../../../layouts/Layout.astro";
 const { slug } = Astro.params;
 
 // collect all image files from the classes folder with glob
@@ -22,6 +23,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     generate an optimized image with Astro
     replace the image's URL in the AST
   wait for all promises to complete and return modified AST
+  TODO: maybe extract this to a separate file
     */
 
 const replaceAstroImages = () => {
@@ -76,27 +78,29 @@ const processedMdObj = await unified()
 const processedMd = processedMdObj.value;
 ---
 
-<div class="reveal">
-  <div class="slides">
-    <section data-markdown>
-      <textarea data-template set:html={processedMd} />
-    </section>
+<Layout>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        <textarea data-template set:html={processedMd} />
+      </section>
+    </div>
   </div>
-</div>
-<script>
-  import Reveal from "reveal.js";
-  import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
-  let deck = new Reveal({
-    plugins: [Markdown],
-    transition: "convex",
-    slideNumber: true,
-  });
-  deck.initialize();
-</script>
-<link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
-<link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/night.css" />
-<style>
-  textarea {
-    display: none;
-  }
-</style>
+  <script>
+    import Reveal from "reveal.js";
+    import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
+    let deck = new Reveal({
+      plugins: [Markdown],
+      transition: "convex",
+      slideNumber: true,
+    });
+    deck.initialize();
+  </script>
+  <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+  <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/night.css" />
+  <style>
+    textarea {
+      display: none;
+    }
+  </style>
+</Layout>

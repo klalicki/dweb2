@@ -1,16 +1,22 @@
 ---
 import { getCollection } from "astro:content";
 
-const classes = await getCollection("classes");
+const lessons = await getCollection("lessons");
+const projects = await getCollection("projects");
 ---
 
 <nav>
   <h2>Classes</h2>
   {
-    classes.map((classItem) => (
-      <a href={`/classes/${classItem.id}`}>{classItem.data.title}</a>
+    lessons.map((classItem) => (
+      <a href={`/classes/${classItem.id}/lesson`}>{classItem.data.title}</a>
     ))
   }
   <h2>Projects</h2>
+  {
+    projects.map((projectItem) => (
+      <a href={`/projects/${projectItem.id}`}>{projectItem.data.title}</a>
+    ))
+  }
   <h2>Resources</h2>
 </nav>

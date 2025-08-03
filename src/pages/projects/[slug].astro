@@ -1,6 +1,7 @@
 ---
 import { Code } from "astro/components";
 import { getCollection, getEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
 
 const { slug } = Astro.params;
 
@@ -15,7 +16,8 @@ export async function getStaticPaths() {
 const project = await getEntry("projects", slug);
 const projectText = project?.body;
 ---
-
+<Layout>
 <h1>{project?.data.title}</h1>
 <Code code={JSON.stringify(project, null, 2)} lang="json" />
 <Fragment set:html={projectText} />
+</Layout>
