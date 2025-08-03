@@ -1,0 +1,19 @@
+---
+import { getCollection, getEntry } from "astro:content";
+
+const { slug } = Astro.params;
+
+console.log("slug", slug);
+export async function getStaticPaths() {
+  const pages = await getCollection("slides");
+  console.log("pages", pages);
+  return pages.map((page) => {
+    return { params: { slug: page.id } };
+  });
+}
+
+const lesson = await getEntry("lessons", slug);
+---
+
+<h1>LESSON</h1>
+{JSON.stringify(lesson)}

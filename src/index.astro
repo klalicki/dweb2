@@ -3,7 +3,7 @@ import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 
 import { getCollection } from "astro:content";
-const posts = await getCollection("slides");
+const posts = await getCollection("lessons");
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -12,4 +12,12 @@ const posts = await getCollection("slides");
 <Layout>
   <Welcome />
   {JSON.stringify(posts)}
+  {
+    posts.map((post) => (
+      <div>
+        <h2>{post.data.title}</h2>
+        <a href={`/classes/${post.id}`}>Read more</a>
+      </div>
+    ))
+  }
 </Layout>

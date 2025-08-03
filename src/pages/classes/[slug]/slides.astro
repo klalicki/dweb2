@@ -1,18 +1,32 @@
 ---
 import { getCollection } from "astro:content";
-import { remark } from "remark";
-import { visit } from "unist-util-visit";
 import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkStringify from "remark-stringify";
+import { visit } from "unist-util-visit";
 import { getImage } from "astro:assets";
 const { slug } = Astro.params;
 
+// collect all image files from the classes folder with glob
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/content/classes/**/*.{jpeg,jpg,png,gif}"
 );
-// console.log("Images:", images);
+
+/* unified/remark plugin that:
+  scans the AST for images
+  if an image starts with http: 
+    ignore it
+  else:
+    add it to the array of images to process
+  for each image in array:  
+    generate an optimized image with Astro
+    replace the image's URL in the AST
+  wait for all promises to complete and return modified AST
+    */
 
 const replaceAstroImages = () => {
   return async (tree) => {
+    // empty array to hold all the images found in the tree
     const imagesToProcess = [];
     visit(tree, "image", (node) => {
       if (node.url.startsWith("http")) {
@@ -42,7 +56,7 @@ const replaceAstroImages = () => {
 export async function getStaticPaths() {
   const slides = await getCollection("slides");
   return slides.map((slide) => {
-    return { params: { slug: slide.id.split("/")[0] } };
+    return { params: { slug: slide.id } };
   });
 }
 
@@ -53,17 +67,19 @@ const pageData = import.meta.glob(`/src/content/classes/*/slides.md`, {
 
 const content = pageData.default;
 
-const processedMd = await remark().use(replaceAstroImages).process(content);
-const replaced = processedMd.value.toString().replaceAll("***", "---");
-console.log("original md:", content);
-console.log("processed md:", replaced);
+// const processedMd = await remark().use(replaceAstroImages).process(content);
+const processedMdObj = await unified()
+  .use(remarkParse)
+  .use(replaceAstroImages)
+  .use(remarkStringify, { rule: "-" })
+  .process(content);
+const processedMd = processedMdObj.value;
 ---
 
-<!-- {JSON.stringify(marpKeys)} -->
 <div class="reveal">
   <div class="slides">
     <section data-markdown>
-      <textarea data-template set:html={replaced} />
+      <textarea data-template set:html={processedMd} />
     </section>
   </div>
 </div>
