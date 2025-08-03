@@ -1,11 +1,12 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
+import SlidesButton from "../../../components/SlidesButton.astro";
 
 const { slug } = Astro.params;
 
 console.log("slug", slug);
 export async function getStaticPaths() {
-  const pages = await getCollection("slides");
+  const pages = await getCollection("lessons");
   console.log("pages", pages);
   return pages.map((page) => {
     return { params: { slug: page.id } };
@@ -13,9 +14,12 @@ export async function getStaticPaths() {
 }
 
 const lesson = await getEntry("lessons", slug);
-const lessonText = lesson?.body;
+if (!lesson) {
+  throw new Error(`Lesson with slug "${slug}" not found.`);
+}
+const { Content, headings } = await render(lesson);
 ---
 
 <h1>{lesson?.data.title}</h1>
-{JSON.stringify(lesson)}
-<Fragment set:html={lessonText} />
+<SlidesButton classId={slug} />
+<Content />

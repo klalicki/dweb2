@@ -1,0 +1,18 @@
+---
+import { getEntry } from "astro:content";
+const { classId } = Astro.props;
+
+const slide = await getEntry("slides", classId);
+---
+
+{
+  slide && (
+    <a href={`/classes/${classId}/slides`} class="btn-slides">
+      View Slides
+    </a>
+  )
+}
+<style>
+  .btn-slides {
+  }
+</style>
