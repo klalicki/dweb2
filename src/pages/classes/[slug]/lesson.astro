@@ -13,7 +13,9 @@ export async function getStaticPaths() {
 }
 
 const lesson = await getEntry("lessons", slug);
+const lessonText = lesson?.body;
 ---
 
 <h1>LESSON</h1>
 {JSON.stringify(lesson)}
+<Fragment set:html={lessonText} />
