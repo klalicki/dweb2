@@ -23,4 +23,27 @@ const slides = defineCollection({
   }),
 });
 
-export const collections = { lessons, slides };
+const assignments = defineCollection({
+  loader: glob({
+    pattern: "**/homework-*.md",
+    base: "./src/content/classes",
+    generateId: ({ entry }) => {
+      console.log(entry);
+      return entry.replaceAll("/", "_");
+    },
+  }),
+  schema: z.object({
+    title: z.string(),
+    project: z.string().optional(),
+    due: z.date({ coerce: true }),
+  }),
+});
+
+const projects = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/projects" }),
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
+export const collections = { lessons, slides, assignments, projects };
