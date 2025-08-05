@@ -1,0 +1,22 @@
+---
+
+---
+
+<a class="btn-float" href={Astro.props.href}>
+  <slot />
+</a>
+<!-- TODO: style this -->
+<style>
+  .btn-float {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    background-color: darkblue;
+    border: 2px solid pink;
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-decoration: none;
+  }
+</style>
