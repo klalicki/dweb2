@@ -1,4 +1,4 @@
-## Welcome to Design For The Web 2
+# Welcome to Design For The Web 2
 
 Let's make some websites!
 
