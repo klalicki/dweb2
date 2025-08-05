@@ -7,9 +7,8 @@ import { visit } from "unist-util-visit";
 import { getImage } from "astro:assets";
 import { getEntry } from "astro:content";
 const { classID } = Astro.params;
-
+import Theme from "../../../components/Theme.astro";
 import "./monokai.css";
-
 import FloatingButton from "../../../components/FloatingButton.astro";
 
 // collect all image files from the classes folder with glob
@@ -80,6 +79,7 @@ const processedMd = processedMdObj.value;
 console.log(processedMd);
 ---
 
+<Theme />
 <FloatingButton href={`/classes/${classID}/lesson`}>
   Back to Lesson</FloatingButton
 >
@@ -106,6 +106,24 @@ console.log(processedMd);
 </script>
 <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
 <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/night.css" />
+<style is:global>
+  :root:root {
+    --r-background-color: var(--color-bg);
+    --r-main-font: var(--font-main);
+
+    --r-main-color: var(--color-text);
+
+    --r-heading-font: var(--font-secondary);
+    --r-heading-color: var(--color-text);
+
+    --r-code-font: var(--font-code);
+    --r-link-color: var(--color-primary);
+    --r-link-color-dark: var(--color-primary);
+    --r-link-color-hover: var(--color-primary);
+    --r-selection-background-color: var(--color-secondary);
+    --r-selection-color: var(--color-bg);
+  }
+</style>
 <style>
   textarea {
     display: none;
