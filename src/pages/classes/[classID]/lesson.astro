@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 import SlidesButton from "../../../components/SlidesButton.astro";
-
+import Layout from "../../../layouts/Layout.astro";
 const { classID } = Astro.params;
 
 console.log("classID", classID);
@@ -20,6 +20,8 @@ if (!lesson) {
 const { Content, headings } = await render(lesson);
 ---
 
-<h1>{lesson?.data.title}</h1>
-<SlidesButton classId={classID} />
-<Content />
+<Layout>
+  <h1>{lesson?.data.title}</h1>
+  <SlidesButton classId={classID} />
+  <Content />
+</Layout>
