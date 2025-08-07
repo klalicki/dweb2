@@ -78,7 +78,10 @@ const processedMdObj = await unified()
 const processedMd = processedMdObj.value;
 console.log(processedMd);
 ---
-
+<!-- TODO: implement head/body structure on this page -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
 <Theme />
 <FloatingButton href={`/classes/${classID}/lesson`}>
   Back to Lesson</FloatingButton
@@ -96,7 +99,7 @@ console.log(processedMd);
   import RevealHighlight from "reveal.js/plugin/highlight/highlight.esm.js";
   let deck = new Reveal({
     plugins: [Markdown, RevealHighlight],
-    // transition: "convex",
+    transition: "convex",
     markdown: {
       smartypants: true,
     },
@@ -110,12 +113,9 @@ console.log(processedMd);
   :root:root {
     --r-background-color: var(--color-bg);
     --r-main-font: var(--font-main);
-
     --r-main-color: var(--color-text);
-
     --r-heading-font: var(--font-secondary);
     --r-heading-color: var(--color-text);
-
     --r-code-font: var(--font-code);
     --r-link-color: var(--color-primary);
     --r-link-color-dark: var(--color-primary);
