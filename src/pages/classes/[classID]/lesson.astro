@@ -26,7 +26,7 @@ const assignments = await getCollection("assignments", (assignment) => {
 const { Content, headings } = await render(lesson);
 ---
 
-<Layout>
+<Layout title={lesson?.data.title || "Lesson"}>
   <h1>{lesson?.data.title}</h1>
   <nav class="page-nav">
     <SlidesButton classId={classID} />
@@ -41,7 +41,6 @@ const { Content, headings } = await render(lesson);
 </Layout>
 
 <style>
- 
   .page-nav {
     display: flex;
     flex-direction: row;

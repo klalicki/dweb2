@@ -24,7 +24,7 @@ const sortedAssignments = assignments
   });
 ---
 
-<Layout>
+<Layout title={project?.data.title || "Project"}>
   <h1>{project?.data.title}</h1>
   <!-- <Code code={JSON.stringify(sortedAssignments, null, 2)} lang="json" /> -->
   <Fragment set:html={projectText} />
