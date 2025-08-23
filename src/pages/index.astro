@@ -1,10 +1,16 @@
 ---
+import Assignment from "../components/Assignment.astro";
 import Layout from "../layouts/Layout.astro";
 
 import { getCollection } from "astro:content";
-const posts = await getCollection("lessons");
+const lessons = await getCollection("lessons");
 
-const assignments = await getCollection("assignments");
+const assignments = await getCollection("assignments", (assignment) => {
+  console.log(assignment);
+  const dueDate = new Date(assignment.data.due);
+  const now = new Date();
+  return dueDate > now;
+});
 ---
 
 <Layout>
@@ -19,5 +25,15 @@ const assignments = await getCollection("assignments");
     >
   </p>
   <h2>Homework</h2>
-  <p>Here are the most recent few homework assignments:</p>
+  <p>
+    Here are all assignments with duedates in the future (as of {
+      new Date().toLocaleDateString()
+    } at {new Date().toLocaleTimeString()})
+  </p>
+  <a href="/homework">See all homework assignments</a>
+  {
+    assignments.map((assignment) => {
+      return <Assignment assignment={assignment} />;
+    })
+  }
 </Layout>
