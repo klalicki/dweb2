@@ -31,9 +31,11 @@ const assignments = await getCollection("assignments", (assignment) => {
     } at {new Date().toLocaleTimeString()})
   </p>
   <a href="/homework">See all homework assignments</a>
-  {
-    assignments.map((assignment) => {
-      return <Assignment assignment={assignment} />;
-    })
-  }
+  <div class="assignments-group">
+    {
+      assignments.map((assignment) => {
+        return <Assignment assignment={assignment} />;
+      })
+    }
+  </div>
 </Layout>

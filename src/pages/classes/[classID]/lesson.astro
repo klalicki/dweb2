@@ -35,17 +35,13 @@ const { Content, headings } = await render(lesson);
   </nav>
   <Content id="lesson" />
   <h2 id="homework">Homework</h2>
-  <div class="assignments-list">
+  <div class="assignments-group">
     {assignments.map((assignment) => <Assignment assignment={assignment} />)}
   </div>
 </Layout>
 
 <style>
-  .assignments-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-  }
+ 
   .page-nav {
     display: flex;
     flex-direction: row;

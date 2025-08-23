@@ -19,11 +19,19 @@ const assignmentsSorted = assignments.sort((a, b) => {
     This is the homework page. This page shows all the homework that has been
     assigned for the whole semester, with the latest due dates at top.
   </p>
-  <div class="assignment-group">
+  <div class="homework-list">
     {
       assignmentsSorted.map((item) => {
-        return <Assignment includeParent assignment={item} />;
+        return <Assignment level={2} assignment={item} />;
       })
     }
   </div>
 </Layout>
+
+<style>
+  .homework-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+</style>

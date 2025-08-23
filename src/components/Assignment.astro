@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import { render } from "astro:content";
-const { assignment } = Astro.props;
+const { assignment, level = 3 } = Astro.props;
 const { Content } = await render(assignment);
 
 const hasProject = Boolean(assignment.data.project);
@@ -12,6 +12,16 @@ const projectData = hasProject
       assignment.data.project.id
     )
   : {};
+
+const headingLevels = {
+  1: "h1",
+  2: "h2",
+  3: "h3",
+  4: "h4",
+  5: "h5",
+  6: "h6",
+};
+const Heading = headingLevels[level] || "h3";
 
 const parentInfo = await getEntry("lessons", assignment.id.split("_")[0]);
 const assignedDate = new Date(parentInfo?.data.date).toLocaleDateString();
@@ -24,16 +34,19 @@ const dateString = new Date(assignment.data.due).toLocaleDateString("en-US", {
 ---
 
 <article class="assignment text-frame">
-  <h3>{assignment.data.title}</h3>
-  <p class="due-date">Due {dateString}</p>
-  <p>
-    Assigned <a href={`/classes/${parentInfo?.id}/lesson`}>{assignedDate}</a>
-  </p>
+  <Heading>{assignment.data.title}</Heading>
+  <div class="full-width-group">
+    <p class="due-date">Due {dateString}</p>
+    <p>
+      Assigned <a href={`/classes/${parentInfo?.id}/lesson`}>{assignedDate}</a>
+    </p>
+  </div>
+
   {
     hasProject && (
-      <p>
+      <p class="project-part">
         Part of{" "}
-        <a class="project-tag" href={`/projects/${projectData.id}`}>
+        <a class="project-tag btn" href={`/projects/${projectData.id}`}>
           {projectData.data.title}
         </a>
       </p>
@@ -61,5 +74,11 @@ const dateString = new Date(assignment.data.due).toLocaleDateString("en-US", {
   .project-tag:hover {
     background-color: var(--color-primary);
     color: var(--color-bg);
+  }
+  .full-width-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 </style>
