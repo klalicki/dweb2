@@ -6,7 +6,6 @@ const projects = await getCollection("projects");
 ---
 
 <nav class:list={["menu-main", "menu-switchable"]}>
-  <a href="/">Home</a>
   <button
     id="menu-toggle"
     class="btn"
@@ -14,6 +13,8 @@ const projects = await getCollection("projects");
     aria-expanded="false"><span class="menu-toggle-text">Menu</span></button
   >
   <div class="menu-main-group menu-mobile-hidden">
+    <a href="/">Home</a>
+
     <h2>Classes</h2>
     {
       lessons.map((classItem) => (
@@ -34,7 +35,6 @@ const projects = await getCollection("projects");
   nav {
     display: flex;
     flex-direction: column;
-    text-align: center;
   }
   a {
     padding: 0.5rem 0;
@@ -72,9 +72,6 @@ const projects = await getCollection("projects");
     top: 0.5rem;
     right: 0.5rem;
     z-index: 50;
-    border: 1px solid red;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
   }
 
   @media screen and (min-width: 768px) {
@@ -86,7 +83,7 @@ const projects = await getCollection("projects");
       overflow-y: auto;
       width: var(--size-sidenav-width);
       padding: 1rem;
-      outline: 1px solid white;
+      border-right: 1px solid var(--color-secondary);
     }
 
     #menu-toggle[aria-expanded] + .menu-main-group {

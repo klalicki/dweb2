@@ -28,10 +28,10 @@ const { Content, headings } = await render(lesson);
 
 <Layout>
   <h1>{lesson?.data.title}</h1>
-  <nav>
+  <nav class="page-nav">
     <SlidesButton classId={classID} />
-    <a href="#lesson">Lesson</a>
-    <a href="#homework">Homework</a>
+    <a class="btn" href="#lesson">Lesson</a>
+    <a class="btn" href="#homework">Homework</a>
   </nav>
   <Content id="lesson" />
   <h2 id="homework">Homework</h2>
@@ -45,5 +45,11 @@ const { Content, headings } = await render(lesson);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+  }
+  .page-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0.5rem 0;
   }
 </style>

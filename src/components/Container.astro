@@ -1,8 +1,11 @@
 <div class="container"><slot /></div>
-<style>
+<style is:global>
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem 1rem;
+  }
+  .container > * {
+    margin: 1em 0;
   }
 </style>
