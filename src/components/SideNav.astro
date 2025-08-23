@@ -6,6 +6,7 @@ const projects = await getCollection("projects");
 ---
 
 <nav class:list={["menu-main", "menu-switchable"]}>
+  <a href="/">Home</a>
   <button
     id="menu-toggle"
     class="btn"
@@ -33,6 +34,7 @@ const projects = await getCollection("projects");
   nav {
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
   a {
     padding: 0.5rem 0;
@@ -126,12 +128,12 @@ const projects = await getCollection("projects");
   });
 
   // Hide the mobile menu when focus moves outside of it
-  document.querySelector(".menu-main-group")?.addEventListener("focusout", (e) => {
-    const menu = e.currentTarget;
-    if (!menu.contains(e.relatedTarget)) {
-      hideMobileMenu();
-    }
-  });
+  document
+    .querySelector(".menu-main-group")
+    ?.addEventListener("focusout", (e) => {
+      const menu = e.currentTarget;
+      if (!menu.contains(e.relatedTarget)) {
+        hideMobileMenu();
+      }
+    });
 </script>
-
-</code>
