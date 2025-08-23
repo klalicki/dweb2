@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import { render } from "astro:content";
-const { assignment, includeParent } = Astro.props;
+const { assignment } = Astro.props;
 const { Content } = await render(assignment);
 
 const hasProject = Boolean(assignment.data.project);
@@ -13,6 +13,8 @@ const projectData = hasProject
     )
   : {};
 
+const parentInfo = await getEntry("lessons", assignment.id.split("_")[0]);
+const assignedDate = new Date(parentInfo?.data.date).toLocaleDateString();
 const dateString = new Date(assignment.data.due).toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
@@ -23,8 +25,10 @@ const dateString = new Date(assignment.data.due).toLocaleDateString("en-US", {
 
 <article class="assignment text-frame">
   <h3>{assignment.data.title}</h3>
-  <p class="due-date">due {dateString}</p>
-
+  <p class="due-date">Due {dateString}</p>
+  <p>
+    Assigned <a href={`/classes/${parentInfo?.id}/lesson`}>{assignedDate}</a>
+  </p>
   {
     hasProject && (
       <p>

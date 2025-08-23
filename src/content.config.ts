@@ -10,7 +10,7 @@ const lessons = defineCollection({
       return entry.split("/")[0];
     },
   }),
-  schema: z.object({ title: z.string() }),
+  schema: z.object({ title: z.string(), date: z.date({ coerce: true }) }),
 });
 const slides = defineCollection({
   loader: glob({
@@ -34,7 +34,7 @@ const assignments = defineCollection({
   }),
   schema: z.object({
     title: z.string(),
-    project: reference('projects').optional(),
+    project: reference("projects").optional(),
     due: z.date({ coerce: true }),
   }),
 });
