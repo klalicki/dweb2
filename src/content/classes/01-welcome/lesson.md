@@ -1,5 +1,5 @@
 ---
-title: Our First Class
+title: 08/25
 ---
 
 # Welcome to Your First Class

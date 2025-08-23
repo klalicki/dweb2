@@ -1,0 +1,32 @@
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<style>
+  .skip-link {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background-color: var(--color-bg);
+    border: 2px solid var(--color-text);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .skip-link:focus-visible,
+  .skip-link:focus {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* playing with full screen shade when skip link is active */
+  /* .skip-link:focus::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg);
+    z-index: -10;
+    opacity: 0.5;
+  } */
+</style>

@@ -1,5 +1,7 @@
 ---
+import Container from "../components/Container.astro";
 import SideNav from "../components/SideNav.astro";
+import SkipLink from "../components/SkipLink.astro";
 import Theme from "../components/Theme.astro";
 ---
 
@@ -14,8 +16,16 @@ import Theme from "../components/Theme.astro";
   </head>
 
   <body>
-    <SideNav />
-    <main><slot /></main>
+    <SkipLink />
+    <header>
+      <SideNav />
+    </header>
+
+    <main>
+      <Container>
+        <slot />
+      </Container>
+    </main>
   </body>
 </html>
 
