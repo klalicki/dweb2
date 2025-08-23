@@ -28,9 +28,13 @@ const { Content, headings } = await render(lesson);
 
 <Layout>
   <h1>{lesson?.data.title}</h1>
-  <SlidesButton classId={classID} />
-  <Content />
-  <h2>Homework</h2>
+  <nav>
+    <SlidesButton classId={classID} />
+    <a href="#lesson">Lesson</a>
+    <a href="#homework">Homework</a>
+  </nav>
+  <Content id="lesson" />
+  <h2 id="homework">Homework</h2>
   <div class="assignments-list">
     {assignments.map((assignment) => <Assignment assignment={assignment} />)}
   </div>
