@@ -2,6 +2,7 @@
 import { getCollection, getEntry, render } from "astro:content";
 import SlidesButton from "../../../components/SlidesButton.astro";
 import Layout from "../../../layouts/Layout.astro";
+import Assignment from "../../../components/Assignment.astro";
 const { classID } = Astro.params;
 
 console.log("classID", classID);
@@ -17,6 +18,11 @@ const lesson = await getEntry("lessons", classID);
 if (!lesson) {
   throw new Error(`Lesson with classID "${classID}" not found.`);
 }
+
+const assignments = await getCollection("assignments", (assignment) => {
+  return assignment.id.split("_")[0] == classID;
+});
+
 const { Content, headings } = await render(lesson);
 ---
 
@@ -24,4 +30,16 @@ const { Content, headings } = await render(lesson);
   <h1>{lesson?.data.title}</h1>
   <SlidesButton classId={classID} />
   <Content />
+  <h2>Homework</h2>
+  <div class="assignments-list">
+    {assignments.map((assignment) => <Assignment assignment={assignment} />)}
+  </div>
 </Layout>
+
+<style>
+  .assignments-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+</style>

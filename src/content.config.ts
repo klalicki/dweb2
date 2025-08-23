@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, reference, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 const lessons = defineCollection({
@@ -34,7 +34,7 @@ const assignments = defineCollection({
   }),
   schema: z.object({
     title: z.string(),
-    project: z.string().optional(),
+    project: reference('projects').optional(),
     due: z.date({ coerce: true }),
   }),
 });

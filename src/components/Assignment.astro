@@ -1,0 +1,61 @@
+---
+import { getEntry } from "astro:content";
+import { render } from "astro:content";
+const { assignment } = Astro.props;
+const { Content } = await render(assignment);
+
+const hasProject = Boolean(assignment.data.project);
+
+const projectData = hasProject
+  ? await getEntry(
+      assignment.data.project.collection,
+      assignment.data.project.id
+    )
+  : {};
+
+const dateString = new Date(assignment.data.due).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  weekday: "long",
+});
+---
+
+<article class="assignment">
+  <h3>{assignment.data.title}</h3>
+  <p class="due-date">due {dateString}</p>
+
+  {
+    hasProject && (
+      <p>
+        Part of{" "}
+        <a class="project-tag" href={`/projects/${projectData.id}`}>
+          {projectData.data.title}
+        </a>
+      </p>
+    )
+  }
+  <hr />
+  <Content />
+</article>
+
+<style>
+  article.assignment {
+    border: 1px solid red;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+  hr {
+    margin: 1rem 0;
+  }
+  .project-tag {
+    padding: 0.25rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    border: 1px solid var(--color-primary);
+  }
+  .project-tag:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+  }
+</style>
