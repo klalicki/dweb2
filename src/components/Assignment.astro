@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import { render } from "astro:content";
-const { assignment } = Astro.props;
+const { assignment, includeParent } = Astro.props;
 const { Content } = await render(assignment);
 
 const hasProject = Boolean(assignment.data.project);
@@ -21,7 +21,7 @@ const dateString = new Date(assignment.data.due).toLocaleDateString("en-US", {
 });
 ---
 
-<article class="assignment">
+<article class="assignment text-frame">
   <h3>{assignment.data.title}</h3>
   <p class="due-date">due {dateString}</p>
 
@@ -41,7 +41,7 @@ const dateString = new Date(assignment.data.due).toLocaleDateString("en-US", {
 
 <style>
   article.assignment {
-    border: 1px solid red;
+    border: 1px solid var(--color-secondary);
     padding: 1rem;
     border-radius: 1rem;
   }

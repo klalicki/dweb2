@@ -1,5 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Assignment from "../components/Assignment.astro";
+import { getCollection } from "astro:content";
+
+const assignments = await getCollection("assignments");
+const assignmentsSorted = assignments.sort((a, b) => {
+  if (a.data.due === b.data.due) {
+    return 0;
+  }
+  const isOlder = new Date(b.data.due) < new Date(a.data.due);
+  return isOlder ? -1 : 1;
+});
 ---
 
 <Layout>
@@ -8,4 +19,11 @@ import Layout from "../layouts/Layout.astro";
     This is the homework page. This page shows all the homework that has been
     assigned for the whole semester, with the latest due dates at top.
   </p>
+  <div class="assignment-group">
+    {
+      assignmentsSorted.map((item) => {
+        return <Assignment includeParent assignment={item} />;
+      })
+    }
+  </div>
 </Layout>
