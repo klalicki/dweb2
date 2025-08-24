@@ -1,4 +1,6 @@
-# Welcome to Design For The Web 2
+## Welcome to **Design For The Web 2**
+
+_DES491 - Fall 2025_
 
 Let's make some websites!
 
@@ -13,15 +15,21 @@ Let's make some websites!
 
 ---
 
-## Intro to HTML/CSS
+## Intro to HTML/CSS (Review)
 
 ---
 
-## <h2 class="r-fit-text">BIG</h2>
+## What's the difference between HTML and CSS?
 
 ---
 
-![Bobby Tables](bobby-tables.png)
+**HTML** is used for _content_,
+
+while **CSS** is used for _appearance_.
+
+---
+
+## <h2 class="r-fit-text">HTML nice</h2>
 
 ---
 

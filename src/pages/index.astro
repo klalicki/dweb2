@@ -15,6 +15,7 @@ const assignments = await getCollection("assignments", (assignment) => {
 
 <Layout title="Home">
   <h1>Welcome to Design for the Web 2</h1>
+  <p class="intro-fun">Let's make some Web Sites!</p>
   <p>
     We'll be using this site to organize the lessons and homework for this
     course.
@@ -39,3 +40,11 @@ const assignments = await getCollection("assignments", (assignment) => {
     }
   </div>
 </Layout>
+
+<style>
+  .intro-fun {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    font-style: italic;
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-title: Our First Project
+title: Placeholder
 ---
 
-Here is a description of project 1. yay.
+This is where our first project will go.
