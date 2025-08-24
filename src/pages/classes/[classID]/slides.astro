@@ -9,6 +9,8 @@ import { getEntry } from "astro:content";
 const { classID } = Astro.params;
 import Theme from "../../../components/Theme.astro";
 import "./monokai.css";
+import "/node_modules/reveal.js/dist/reveal.css";
+import "/node_modules/reveal.js/dist/theme/night.css";
 import FloatingButton from "../../../components/FloatingButton.astro";
 
 // collect all image files from the classes folder with glob
@@ -99,6 +101,7 @@ console.log(processedMd);
   import Reveal from "reveal.js";
   import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
   import RevealHighlight from "reveal.js/plugin/highlight/highlight.esm.js";
+
   let deck = new Reveal({
     plugins: [Markdown, RevealHighlight],
     transition: "convex",
@@ -109,8 +112,7 @@ console.log(processedMd);
   });
   deck.initialize();
 </script>
-<link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
-<link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/night.css" />
+
 <style is:global>
   :root:root {
     --r-background-color: var(--color-bg);
