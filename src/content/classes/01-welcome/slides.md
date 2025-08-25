@@ -2,7 +2,7 @@
 
 _DES491 - Fall 2025_
 
-Let's make some websites!
+Let's make some Web Sites!
 
 ---
 
@@ -11,35 +11,62 @@ Let's make some websites!
 - Welcome/Introductions
 - Syllabus Overview
 - Course Logistics
-- How do websites work? (Review)
+- Mini activity: Reviewing HTML/CSS
 
 ---
 
-## Intro to HTML/CSS (Review)
+## Introductions
+
+Name, pronouns, major, year, and something fun you did this summer.
 
 ---
 
-## What's the difference between HTML and CSS?
+## What is the goal of this class?
 
 ---
 
-**HTML** is used for _content_,
+## 1
 
-while **CSS** is used for _appearance_.
+For you to be comfortable designing & building multi-page websites.
+
+## 2
+
+For you to be able to design a website and deliver your design to another developer so they can understand it without _asking a million questions._
+
+---
+
+If you want to 'do a website' for your thesis, this class will help you learn the tools you need to make it happen.
 
 ---
 
-## <h2 class="r-fit-text">HTML nice</h2>
+## Course Logistics
 
 ---
 
-## Here's a code block?
+### Class Structure
 
-```js [1-2|3|4]
-let a = 1;
-let b = 2;
-let c = (x) => 1 + 2 + x;
-c(3);
-```
+We will start most days with a lesson. We'll do a mix of 'lecture' and hands-on activities.
+
+We will often have a homework assignment, in which you apply the skills you learned in class.
+
+At the end of class, we will usually have work time - this is a great time to work on your project and ask me/your peers for feedback.
 
 ---
+
+We will use this site https://dweb2.netlify.app to keep track of lessons, assignments & projects.
+
+We will set up personal websites next week for your individual assignments and in-progress work.
+
+Finished project submissions will go in The Jar.
+
+---
+
+## The Jar
+
+![The Jar](the-jar.png)
+
+---
+
+## Let's make some Web Sites
+
+We're going to make a quick one-page site together.
