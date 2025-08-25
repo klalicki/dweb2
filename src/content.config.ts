@@ -1,6 +1,18 @@
 import { defineCollection, reference, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+const resources = defineCollection({
+  loader: glob({
+    pattern: "*/article.md",
+    base: "./src/content/resources",
+    generateId: ({ entry }) => {
+      console.log(entry.split("/"));
+      return entry.split("/")[0];
+    },
+  }),
+  schema: z.object({ title: z.string() }),
+});
+
 const lessons = defineCollection({
   loader: glob({
     pattern: "*/lesson.md",
@@ -46,4 +58,10 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { lessons, slides, assignments, projects };
+export const collections = {
+  resources,
+  lessons,
+  slides,
+  assignments,
+  projects,
+};

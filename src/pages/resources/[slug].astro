@@ -1,0 +1,23 @@
+---
+import { Code } from "astro/components";
+import { getCollection, getEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const { slug } = Astro.params;
+
+console.log("slug", slug);
+export async function getStaticPaths() {
+  const pages = await getCollection("resources");
+  return pages.map((page) => {
+    return { params: { slug: page.id } };
+  });
+}
+
+const resource = await getEntry("resources", slug);
+const resourceText = resource?.body;
+---
+
+<Layout title={resource?.data.title || "Article"}>
+  <h1>{resource?.data.title}</h1>
+  <Fragment set:html={resourceText} />
+</Layout>

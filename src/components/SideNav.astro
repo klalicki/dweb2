@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 
 const lessons = await getCollection("lessons");
 const projects = await getCollection("projects");
+const resources = await getCollection("resources");
 ---
 
 <nav class:list={["menu-main", "menu-switchable"]}>
@@ -28,6 +29,12 @@ const projects = await getCollection("projects");
       ))
     }
     <h2>Resources</h2>
+
+    {
+      resources.map((resource) => (
+        <a href={`/resources/${resource.id}`}>{resource.data.title}</a>
+      ))
+    }
   </div>
 </nav>
 
@@ -35,6 +42,7 @@ const projects = await getCollection("projects");
   nav {
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
   a {
     padding: 0.5rem;
