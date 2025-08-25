@@ -1,4 +1,4 @@
-## Welcome to **Design For The Web 2**
+## Welcome to **Design for the Web 2**
 
 _DES491 - Fall 2025_
 
@@ -11,7 +11,7 @@ Let's make some websites!
 - Welcome/Introductions
 - Syllabus Overview
 - Course Logistics
-- Reviewing HTML/CSS
+- How do websites work? (Review)
 
 ---
 
