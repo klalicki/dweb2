@@ -131,6 +131,10 @@ There are a lot of types of tags. We're going to look at them in a few categorie
 
 - HTML Document Structure
 - Text Content
+- Links & Media
+- Grouping
+
+Later, we'll look at Tables and Forms
 
 ---
 
@@ -302,7 +306,7 @@ The `<body>` element contains the actual content of the web page. This is the pa
 
 ---
 
-### Text Content Tags
+## Text Content Tags
 
 ---
 
@@ -499,7 +503,56 @@ A description list is a list of terms and their descriptions. It is created usin
 
 ---
 
-### Grouping Elements
+## Links & Media
+
+---
+
+### Links
+
+Links are created using the `<a>` tag. The `href` attribute specifies the URL of the page the link goes to.
+
+```html
+<a href="https://www.example.com">This is a link</a>
+```
+
+<div class="output-preview">
+<a href="https://www.example.com">This is a link</a>
+</div>
+
+You can also link to a specific section within the same page or another page using an anchor link. For example:
+
+```html
+<a href="#section1">Go to Section 1</a>
+<a href="https://www.example.com#section1">Go to Section 1 on Example.com</a>
+```
+
+---
+
+### URL Types for links
+
+We have a few ways to write URLs:
+
+**Absolute URL:** a 'full' URL with the protocol (http or https) and the domain name. For example: `https://www.example.com`.
+
+**Relative URL:** a URL that is relative to the current page. For example: `/about` would link to the about page on the same site. These should start with a slash.
+
+---
+
+### Images
+
+Images are added using the `<img>` tag. The `src` attribute specifies the URL of the image, and the `alt` attribute provides a description of the image. If the image fails to load, the alt text will be displayed instead. Later in the semester we will learn how to write good alt text.
+
+```html
+<img src="image.jpg" alt="Description of the image" />
+```
+
+<div class="output-preview">
+<img src="image.jpg" alt="Description of the image" style="background-color: lightgray;height:3rem;">
+</div>
+
+---
+
+## Grouping Elements
 
 There are _a lot_ of HTML elements that can be used for grouping stuff together. None of them have any visual style by default, so you will need to style them with CSS. Many of them also convey a semantic meaning.
 
@@ -529,6 +582,8 @@ The `<nav>` element should be used to group navigation links together. Users of 
   <a href="/">Contact</a>
 </nav>
 ```
+
+---
 
 #### `<section>`, `<article>`, `<aside>`
 
@@ -591,3 +646,97 @@ By adding a 'name' property to the details element, we can create a group where 
   <p>Here's some content in details element 2 </p>
 </details>
 </div>
+
+---
+
+#### `<figure>` and `<figcaption>`
+
+The `<figure>` element is used to group media content (like images, videos, etc.) along with a caption. The `<figcaption>` element is used to provide a visible caption for the content.
+
+```html
+<figure>
+  <img src="image.jpg" alt="Description of the image" />
+  <figcaption>This is a caption for the image.</figcaption>
+</figure>
+```
+
+<div class="output-preview" style="max-width:400px;margin:0 auto;" >
+<figure>
+  <img src="" alt="" style="background-color: lightgray;height:3rem;">
+  <figcaption>This is a caption for the image.</figcaption>
+</figure>
+</div>
+
+---
+
+## Other Tags
+
+---
+
+### The `<style>`tag
+
+You can use the `style` tag to write CSS directly within your HTML page. We'll be using this a lot when we start working with Astro.
+
+```html
+<style>
+  /* CSS goes here */
+  body {
+    color: green;
+    font-size: 20px;
+  }
+</style>
+```
+
+---
+
+## That's enough tags for now.
+
+We'll look at others as needed.
+
+---
+
+## HTML Attributes
+
+Attributes are used to add additional properties to elements. They are written with the following format:
+
+```html
+<h1 property="value"></h1>
+```
+
+Note that the value is always in quotes, and the property name is lowercase.
+
+---
+
+### Special attributes for certain tags
+
+Some tags have special attributes available for use.
+
+- `<img>` has `alt`, `src`
+- `<a>` has `href`
+- `<details>` has `name` (group name)
+
+---
+
+### The `style` attribute.
+
+You can add a `style` attribute to any element, and you can put CSS _properties_ inside it. This is useful if you want to make one element have a unique appearance.
+
+```html
+<p style="background-color:pink;color:darkblue">Here's some text</p>
+```
+
+<div class="output-preview">
+<p style="background-color:pink;color:darkblue">Here's some text</p>
+</div>
+
+---
+
+### Class and ID Attributes
+
+Class and ID names (for CSS styling) are also considered attributes.
+
+Every element can have a `class` attribute with a list of CSS classes, and an `id` attribute with ONE id
+
+`<div class="class1 another-class class3">`
+
+Remember, class and ID names cannot have spaces, and they must start with a letter. The usual convention is 'kebab-case' (all lower-case with hyphens between words)
