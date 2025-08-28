@@ -56,25 +56,21 @@ HTML _(Hypertext Markup Language)_ is a standardized language used to create and
 
 ---
 
-## HTML Page Structure
+## Semantic HTML
 
-Every HTML page should have the following basic structure:
+It's important to remember that not every web user is able to see & interact with the page in the same way that you do. Some people may be accessing the page through a screen reader, or they may be using a plugin that changes the font size or layout.
 
-```html
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Page Title</title>
-  </head>
-  <body>
-    <!-- Page content goes here -->
-  </body>
-</html>
-```
+_This means we cannot solely rely on appearance to show a page's structure._
 
-<!-- TODO: line by line breakdown of this -->
+---
+
+## Semantic HTML
+
+Luckily, we have a set of _semantic HTML_ elements, that are able to convey meaning and structure in addition to their content.
+
+Using semantic HTML helps ensure that your content is accessible and understandable by all users, even without the visual cues.
+
+We should use semantic elements whenever possible (but it isn't always possible or practical)
 
 ---
 
@@ -413,7 +409,7 @@ You may be tempted by the `<b>` and `<i>` tags, but these are no longer recommen
 
 #### The `<span>` tag
 
-Sometimes, you may want to select part of a line of text to style it in a special way. You can use the `<span>` tag for this purpose. This tag on its own doesn't add any styling, so you will need to use CSS.
+Sometimes, you may want to select part of a line of text to style it in a special way. You can use the `<span>` tag for this purpose. This tag on its own doesn't add any styling OR meaning, so you will need to use CSS.
 
 ```html
 <p>This is a <span class="highlight">highlighted</span> word.</p>
@@ -422,6 +418,20 @@ Sometimes, you may want to select part of a line of text to style it in a specia
 <div class="output-preview">
 This is a <span style="background-color:yellow;">highlighted</span> word.
 
+</div>
+
+---
+
+#### The `<div>` tag
+
+The `<div>`, or division, tag is used to group elements together, usually for the purpose of visually grouping and styling them. It's important to remember that the `div` doesn't add any meaning to its contents, so in many cases you are better off using a semantic group tag.
+
+```html
+<div class="blue-box">some text inside a div</div>
+```
+
+<div class="output-preview">
+  <div style="border:2px solid blue;padding:.5rem;max-width:400px;margin:0 auto;">some text inside a div</div>
 </div>
 
 ---
@@ -750,8 +760,120 @@ Classes can be used more than once on a page - classes are great for styling mul
 
 IDs must be unique within a page - we typically use them when we want to target a single specific element.
 
-We can also use IDs for 'jump links' - you can use them in a link ie
+We can also use IDs for 'jump links' - you can use them in a link's href:
 
 ```html
 <a href="#my-special-div">Go to my special div</a>
 ```
+
+or
+
+```html
+<a href="/another-page#my-special-div">Another page</a>
+```
+
+---
+
+## You don't have to remember _every_ HTML element.
+
+There's nothing wrong with looking up elements as you work. There are some that you will use all the time, and some that you will rarely use.
+
+The [MDN Web Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/) is a great reference material - it will tell you what each element is used for, any any special attributes that element can/should have.
+
+This [flowchart](https://html5doctor.com/downloads/h5d-sectioning-flowchart.pdf) is also helpful for picking which HTML element to use.
+
+---
+
+# CSS
+
+Cascading Style Sheets
+
+---
+
+## CSS
+
+CSS is how we add visual styling to our page.
+
+```css[]
+h1 {
+  color: blue;
+  font-size: 24px;
+}
+```
+
+In this example, `h1` is a _selector:_ it selects the elements we want to style (in this case all h1 elements)
+
+The code between the curly brackets `{}` is a _declaration block:_ it contains declarations (statements that define the styles to be applied).
+
+---
+
+### CSS Declarations
+
+```css
+h1 {
+  color: blue;
+  font-size: 24px;
+}
+```
+
+Within the declaration block, each statement has the same general formula:
+
+`property-name: value;`
+
+Note that there is a colon `:` between the property name and value, and a semicolon `;` at the end of the line.
+
+---
+
+## Selectors
+
+CSS selectors range from simple to very complex. Today we're going to look at some of the standard simpler ones.
+
+---
+
+### Basic Selectors
+
+#### All of an element
+
+`p {}` will select and style all `<p>` elements.
+
+#### Global Selector
+
+`* {}` will select and style all elements on the page.
+
+---
+
+### IDs and Classes
+
+`#id-name {}` will select and style the element with that specific ID.
+
+`.class-name {}` will select and style all elements with that class.
+
+---
+
+### Combining Selectors
+
+We can combine selectors with no space between to find elements that match _ALL_ of the combined selectors
+
+`h2.class-name {}` will select and style all `<h2>` elements with that class.
+
+`.class-name-1.class-name-2 {}` will select and style all elements with both classes.
+
+---
+
+### Descendant Selectors
+
+We can combine selectors with a space to find elements that are _inside_ other elements.
+
+`.card p {}` will select all `<p>` elements that are inside an element with the class `card`.
+
+We can also combine three or more selectors in the same way.
+
+`article.card .body a {}` will select all link (`<a>`) elements that are inside an element with the class `body`, which is then inside an element with the class `card`, which is inside an `<article>` element.
+
+---
+
+### Child Selector
+
+We can combine selectors with an angle bracket `>` to find elements that are _direct children_ of other elements.
+
+`.card > p {}` will select all `<p>` elements that are direct children of an element with the class `card`. It will not select `<p>` elements that are nested deeper inside the `.card` element.
