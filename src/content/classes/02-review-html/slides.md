@@ -882,6 +882,22 @@ We can combine selectors with an angle bracket `>` to find elements that are _di
 
 ---
 
+### Multiple Selectors
+
+If we combine two or more selectors with a comma `,` we can find elements that match _either_ selector.
+
+```css
+h1,
+h2,
+.blue-text {
+  color: blue;
+}
+```
+
+In this example, all `<h1>` and `<h2>` elements will be styled with the same rules, as well as any element with the class `blue-text`.
+
+---
+
 ## CSS properties
 
 Each part of an element's appearance can be controlled with CSS properties. We will go over a lot of these next week, but here are a few simple ones:
