@@ -399,8 +399,8 @@ There are two tags that can be used to emphasize text:
 ```
 
 <div class="output-preview">
-This is _emphasized_ text. <br>
-This is **strongly emphasized** text.
+<p>This is <em>emphasized</em> text.</p>
+<p>This is <strong>strongly emphasized</strong> text.</p>
 </div>
 
 You may be tempted by the `<b>` and `<i>` tags, but these are no longer recommended - they only convey visual styling, while `<strong>` and `<em>` convey meaning to screen readers.
@@ -443,6 +443,8 @@ Lists are used to group related items together. There are three types of lists i
 - Unordered Lists
 - Ordered Lists
 - Description Lists
+
+---
 
 #### Unordered List `<ul>`
 
@@ -877,3 +879,13 @@ We can also combine three or more selectors in the same way.
 We can combine selectors with an angle bracket `>` to find elements that are _direct children_ of other elements.
 
 `.card > p {}` will select all `<p>` elements that are direct children of an element with the class `card`. It will not select `<p>` elements that are nested deeper inside the `.card` element.
+
+---
+
+## CSS properties
+
+Each part of an element's appearance can be controlled with CSS properties. We will go over a lot of these next week, but here are a few simple ones:
+
+- `color`: Sets the text color.
+- `background-color`: Sets the background color.
+- `font-size`: Sets the font size.
