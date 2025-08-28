@@ -311,8 +311,20 @@ The `<body>` element contains the actual content of the web page. This is the pa
 This is our basic text element. All of the longer text on a page should be in `<p>` elements.
 
 ```html
-<p>Here's some text in a p element</p>
+<p>
+  Here's some text in a p element. Lorem ipsum dolor sit amet, consectetur
+  adipiscing elit. Donec vitae malesuada mauris. Donec vulputate vehicula
+  accumsan.
+</p>
 ```
+
+<div class="output-preview"><p>
+  Here's some text in a p element. Lorem ipsum dolor sit amet, consectetur
+  adipiscing elit. Donec vitae malesuada mauris. Donec vulputate vehicula
+  accumsan. 
+</p></div>
+
+---
 
 #### Line break `<br>`
 
@@ -324,6 +336,11 @@ The `<br>` element is used to create a line break in the text. This is the equiv
   Here's some text on the next line
 </p>
 ```
+
+<div class="output-preview"><p>
+  Here's some text in a p element<br />
+  Here's some text on the next line
+</p></div>
 
 ---
 
@@ -343,23 +360,9 @@ Headings are defined with the `<h1>` to `<h6>` tags. The `<h1>` tag is the highe
 <h3>This is a smaller sub-heading</h3>
 ```
 
-#### _kinda important note:_
-
-The browser will remove extra spaces from HTML when displaying it. If you want to _intentionally_ have extra spaces in a piece of text, you need to use `<br/>` elements and/or the `&nbsp;` (non-breaking space) code.
-
 ---
 
-#### Headings
-
-Headings are defined with the `<h1>` to `<h6>` tags. The `<h1>` tag is the highest level (largest text), and the `<h6>` tag is the lowest level (smallest text).
-
-```html
-<h1>This is a heading</h1>
-<h2>This is a sub-heading</h2>
-<h3>This is a smaller sub-heading</h3>
-```
-
----
+<div class="output-preview">
 
 # This is an h1
 
@@ -373,6 +376,8 @@ Headings are defined with the `<h1>` to `<h6>` tags. The `<h1>` tag is the highe
 
 ###### This is an h6
 
+</div>
+
 ---
 
 #### _important note_
@@ -382,3 +387,207 @@ Headings are a _semantic_ element - they provide structure and meaning to the do
 Users of assistive technology such as screen readers often will browse through a page by its heading tree, so it's important to use them logically.
 
 If your goal is just 'make text big', you should probably be using a `<p>` element and making its font-size larger with CSS.
+
+---
+
+#### Emphasis tags
+
+There are two tags that can be used to emphasize text:
+
+```html
+<p>This is <em>emphasized</em> text.</p>
+<p>This is <strong>strongly emphasized</strong> text.</p>
+```
+
+<div class="output-preview">
+This is _emphasized_ text. <br>
+This is **strongly emphasized** text.
+</div>
+
+You may be tempted by the `<b>` and `<i>` tags, but these are no longer recommended - they only convey visual styling, while `<strong>` and `<em>` convey meaning to screen readers.
+
+---
+
+#### The `<span>` tag
+
+Sometimes, you may want to select part of a line of text to style it in a special way. You can use the `<span>` tag for this purpose. This tag on its own doesn't add any styling, so you will need to use CSS.
+
+```html
+<p>This is a <span class="highlight">highlighted</span> word.</p>
+```
+
+<div class="output-preview">
+This is a <span style="background-color:yellow;">highlighted</span> word.
+
+</div>
+
+---
+
+#### Lists
+
+Lists are used to group related items together. There are three types of lists in HTML:
+
+- Unordered Lists
+- Ordered Lists
+- Description Lists
+
+#### Unordered List `<ul>`
+
+An unordered list is a list of items that do not have a specific order. It is created using the `<ul>` tag, with each item inside an `<li>` tag.
+
+```html
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+```
+
+<div class="output-preview">
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+</div>
+
+---
+
+#### Ordered List `<ol>`
+
+An ordered list is a list of items that are arranged in a specific order. It is created using the `<ol>` tag, with each item inside an `<li>` tag.
+
+```html
+<ol>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</ol>
+```
+
+<div class="output-preview">
+<ol>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</ol>
+</div>
+
+---
+
+#### Description List `<dl>`
+
+A description list is a list of terms and their descriptions. It is created using the `<dl>` tag, with each term inside a `<dt>` tag and its description inside a `<dd>` tag.
+
+```html
+<dl>
+  <dt>Term 1</dt>
+  <dd>Description for term 1</dd>
+  <dt>Term 2</dt>
+  <dd>Description for term 2</dd>
+</dl>
+```
+
+<div class="output-preview">
+<dl>
+  <dt>Term 1</dt>
+  <dd>Description for term 1</dd>
+  <dt>Term 2</dt>
+  <dd>Description for term 2</dd>
+</dl>
+</div>
+
+---
+
+### Grouping Elements
+
+There are _a lot_ of HTML elements that can be used for grouping stuff together. None of them have any visual style by default, so you will need to style them with CSS. Many of them also convey a semantic meaning.
+
+---
+
+#### Page Structure Elements
+
+We should typically use the elements `header`, `main`, and `footer` to define the structure of our web pages. These elements provide another way for assistive tech users to navigate the content.
+
+```html
+<header>Header goes here(site logo, nav, etc)</header>
+<main>Main page content goes here</main>
+<footer>Footer content goes here (copyright notice, sitemap links, etc)</footer>
+```
+
+---
+
+#### Navigation
+
+The `<nav>` element should be used to group navigation links together. Users of assistive tech will be able to identify that a section contains navigation links and jump to that section if they want to.
+
+```html
+<nav>
+  <a href="/">Home</a>
+  <a href="/">About</a>
+  <a href="/">Services</a>
+  <a href="/">Contact</a>
+</nav>
+```
+
+#### `<section>`, `<article>`, `<aside>`
+
+These three elements can be used to group chunks of related content together.
+
+- **section** - A thematic grouping of content, typically with a heading.
+- **article** - A self-contained composition that could be distributed and reused independently. "Cards" are often articles.
+- **aside** - Content that is somewhat related to the content around it, often used for sidebars or pull quotes.
+
+You can have an `article` inside a `section` and vice versa. These elements are also used to define the page outline for screen readers.
+
+---
+
+#### `<details>` and `<summary>`
+
+The `details/summary` element are used to create a functional accordion that can open/close.
+
+```html
+<details>
+  <summary>Click me to see more</summary>
+  <p>
+    This is the hidden content that is revealed when the summary is clicked.
+  </p>
+</details>
+```
+
+<div class="output-preview">
+<details>
+  <summary>Click me to see more</summary>
+  <p>
+    This is the hidden content that is revealed when the summary is clicked.
+  </p>
+</details>
+</div>
+
+---
+
+#### `<details>` and `<summary>` pt 2
+
+By adding a 'name' property to the details element, we can create a group where only one can be open at a time.
+
+```html
+<details name="sample-group">
+  <summary>Details Element 1</summary>
+  <p>...</p>
+</details>
+<details name="sample-group">
+  <summary>Details Element 2</summary>
+  <p>...</p>
+</details>
+```
+
+<div class="output-preview">
+<details name="sample-group">
+  <summary>Details Element 1</summary>
+  <p>Here's some content in details element 1</p>
+</details>
+<details name="sample-group">
+  <summary>Details Element 2</summary>
+  <p>Here's some content in details element 2 </p>
+</details>
+</div>
