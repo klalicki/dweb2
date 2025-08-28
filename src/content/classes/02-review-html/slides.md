@@ -8,10 +8,9 @@ Let's make some Web Sites!
 
 ## Today in Class
 
-- Welcome/Introductions
-- Syllabus Overview
-- Course Logistics
-- Mini activity: Reviewing HTML/CSS
+- How Websites Work
+- Review of HTML
+- Review of CSS, part 1
 
 ---
 
@@ -739,4 +738,20 @@ Every element can have a `class` attribute with a list of CSS classes, and an `i
 
 `<div class="class1 another-class class3">`
 
+`<div id="my-special-div">`
+
 Remember, class and ID names cannot have spaces, and they must start with a letter. The usual convention is 'kebab-case' (all lower-case with hyphens between words)
+
+---
+
+### Class vs ID
+
+Classes can be used more than once on a page - classes are great for styling multiple elements in the same way.
+
+IDs must be unique within a page - we typically use them when we want to target a single specific element.
+
+We can also use IDs for 'jump links' - you can use them in a link ie
+
+```html
+<a href="#my-special-div">Go to my special div</a>
+```
