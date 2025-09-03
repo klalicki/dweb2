@@ -2,8 +2,13 @@
 import { getCollection } from "astro:content";
 
 const lessons = await getCollection("lessons");
+
 const projects = await getCollection("projects");
 const resources = await getCollection("resources");
+
+const lessonsSorted = lessons.sort((a, b) => {
+  return a.data.date < b.data.date ? 1 : -1;
+});
 ---
 
 <nav class:list={["menu-main", "menu-switchable"]}>
@@ -18,7 +23,7 @@ const resources = await getCollection("resources");
     <a href="/homework">Homework</a>
     <h2>Classes</h2>
     {
-      lessons.map((classItem) => (
+      lessonsSorted.map((classItem) => (
         <a href={`/classes/${classItem.id}/lesson`}>{classItem.data.title}</a>
       ))
     }
