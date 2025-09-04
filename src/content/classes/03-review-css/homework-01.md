@@ -9,6 +9,10 @@ https://flexboxfroggy.com/
 
 Complete all 24 levels of Flexbox Froggy.
 
+Here's another resource on Flexbox that may be useful:
+
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
 ## Finish the Codecademy courses:
 
 ### Learn HTML:
