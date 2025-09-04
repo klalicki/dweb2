@@ -17,7 +17,6 @@ Let's make some Web Sites!
   - Typography
   - The Box Model
   - Layout / Position
-  - Colors
 
 ---
 
@@ -455,7 +454,7 @@ div {
 
 ---
 
-### `max-width` & `min-width`
+### `max-width` & `min-width`, `max-height` & `min-height`
 
 Constrain element sizing.
 
@@ -544,13 +543,27 @@ div {
 
 ---
 
+### `background-color`
+
+Sets the background color of an element.
+
+```css
+div {
+  background-color: lightblue;
+}
+```
+
+<div style="border: 2px solid black; background-color: lightblue; width: 200px; height: 100px;margin:0 auto;"></div>
+
+---
+
 # Layout/Position
 
 ---
 
-### `display`
+## `display`
 
-Controls how an element is displayed.
+Controls how an _element and/or its children_ are displayed.
 
 ```css
 div {
@@ -558,11 +571,260 @@ div {
 }
 ```
 
-📐 Options: `block`, `inline`, `inline-block`, `flex`, `grid`, `none`.
+Options: `block`, `inline`, `inline-block`, `flex`, `grid`, `none`.
 
 ---
 
-### `position`
+## `block` layout
+
+In block layout, child elements take up the full width of the container, stacking vertically. This is the default for _most_ elements.
+
+```css
+div.child {
+  display: block;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 300px; margin:0 auto;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;height:50px">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;height:50px">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;height:50px">Child 3</div>
+
+---
+
+## `inline` layout
+
+In inline layout, child elements take up only as much width as they need, and flow like text (left to right for an English page).
+
+```css
+div.child {
+  display: inline;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 300px; margin:0 auto;box-sizing:border-box;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;height:50px;display:inline">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;height:50px;display:inline">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;height:50px;display:inline">Child 3</div>
+</div>
+
+Note: Inline elements are weird with sizing and padding/margin - you can see the elements are overlapping.
+
+---
+
+Inline elements can also wrap to the next line if they run out of space:
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 300px; margin:0 auto;box-sizing:border-box;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;height:50px;display:inline">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;height:50px;display:inline">Child 2 with a longer amount of text</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;height:50px;display:inline">Child 3</div>
+</div>
+
+---
+
+## `inline-block` layout
+
+Inline-block elements behave like a combination of block and inline elements. They flow like inline elements, but you can set width/height/padding/margin like block elements.
+
+```css
+div.child {
+  display: inline-block;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 300px; margin:0 auto;box-sizing:border-box;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;height:50px;display:inline-block">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;height:50px;display:inline-block">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;height:50px;display:inline-block">Child 3</div>
+</div>
+
+---
+
+## `display:none
+
+`display: none` completely removes an element from the layout. It will not take up any space on the page. It will also not be visible to screen readers!
+We would usually use this for hidden elements that we want to show later, such as a pop-up menu.
+
+```css
+div {
+  display: none;
+}
+```
+
+---
+
+## `grid` layout
+
+Grid layout is a powerful system for creating two-dimensional layouts with rows and columns. We will look at this later in the course.
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 600px; margin:0 auto;box-sizing:border-box; display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;">Child 3</div>
+  <div style="background-color:lightgray; margin:5px; padding:5px;">Child 4</div>
+  <div style="background-color:lightpink; margin:5px; padding:5px;">Child 5</div>
+  <div style="background-color:lightyellow; margin:5px; padding:5px;">Child 6</div>
+</div>
+
+---
+
+## `flex` layout
+
+Flexbox is a modern layout system that allows for more flexible arrangement of elements.
+
+In flexbox, we set `display: flex` on the _container_ element, then we can apply additional properties to the container and its children to control layout. In flexbox, we can choose the direction of the main axis (the direction in which elements are laid out), and we can control how elements wrap, align, and distribute space.
+
+```css
+.container {
+  display: flex;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 600px; margin:0 auto;box-sizing:border-box; display:flex;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;">Child 3</div></div>
+
+---
+
+## `flex-direction`
+
+Controls the _main axis_ direction: `row` (default), `row-reverse`, `column`, `column-reverse`.
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 200px; height: 300px; margin:0 auto;box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;">Child 3</div></div>
+
+---
+
+## `flex-wrap`
+
+Controls whether items wrap to the next line if they run out of space: `nowrap` (default), `wrap`, `wrap-reverse`.
+
+Without `wrap`:
+
+```css
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 300px; margin:0 auto;box-sizing:border-box; display:flex;">
+  <div style="background-color:lightblue; margin:5px; padding:5px; width:150px;">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px; width:150px;">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px; width:150px;">Child 3</div></div>
+
+---
+
+With `wrap`:
+
+```css
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 300px; margin:0 auto;box-sizing:border-box; display:flex;flex-wrap:wrap;">
+  <div style="background-color:lightblue; margin:5px; padding:5px; width:150px;">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px; width:150px;">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px; width:150px;">Child 3</div>
+  </div>
+
+---
+
+## `justify-content`
+
+Controls how items are distributed along the _main axis._
+
+Options: `flex-start` (default), `flex-end`, `center`, `space-between`, `space-around`, `space-evenly`.
+
+```css
+.container {
+  display: flex;
+  justify-content: center;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 600px; margin:0 auto;box-sizing:border-box; display:flex; justify-content:center;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;">Child 3</div>
+</div>
+
+---
+
+## `align-items`
+
+Controls how items are aligned along the _cross axis._ (the other axis)
+
+Options: `stretch` (default), `flex-start`, `flex-end`, `center`, `baseline`.
+
+```css
+.container {
+  display: flex;
+  align-items: center;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 600px; height: 200px; margin:0 auto;box-sizing:border-box; display:flex; align-items:center;">
+  <div style="background-color:lightblue; margin:5px; padding:5px">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;">Child 3<br>with a second line</div>
+
+---
+
+Combining `justify-content` and `align-items` is a great way to center elements both vertically and horizontally.
+
+```css
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 600px; height: 200px; margin:0 auto;box-sizing:border-box; display:flex; justify-content:center; align-items:center;">
+<div style="background-color:lightblue; margin:5px; padding:5px">Child Element</div>
+
+---
+
+## `gap`
+
+Controls spacing between items in a flex or grid container.
+
+```css
+.container {
+  display: flex;
+  gap: 20px;
+}
+```
+
+<div class="container" style="border: 2px solid black; padding: 10px; width: 600px; margin:0 auto;box-sizing:border-box; display:flex; gap:20px;">
+  <div style="background-color:lightblue; margin:5px; padding:5px;">Child 1</div>
+  <div style="background-color:lightgreen; margin:5px; padding:5px;">Child 2</div>
+  <div style="background-color:lightcoral; margin:5px; padding:5px;">Child 3</div>
+
+---
+
+## `position`
 
 Sets positioning method.
 
@@ -574,7 +836,60 @@ div {
 }
 ```
 
-📍 Values: `static`, `relative`, `absolute`, `fixed`, `sticky`.
+Options: `static`, `relative`, `absolute`, `fixed`, `sticky`.
+
+---
+
+## `position: static`
+
+The default positioining for all elements. Elements are positioned according to the 'normal flow' of the document. This means that you can't use `top`, `left`, `right`, or `bottom` to move the element.
+
+---
+
+## `position: relative`
+
+Elements are positioned according to the normal flow, but you can use `top`, `left`, `right`, and `bottom` to move the element relative to its normal position.
+
+---
+
+## `position: absolute`
+
+Elements are positioned relative to the 'nearest positioned ancestor' (an ancestor element with `position` set to something other than `static`). If there is no positioned ancestor, the element is positioned relative to the whole page.
+
+---
+
+## `position: fixed`
+
+Element is positioned relative to the viewport, and will stay in the same position even when the page is scrolled. This is useful for a 'floating' element, such as a navigation bar that stays at the top of the screen.
+
+```css
+div {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+}
+```
+
+<div style="position:fixed; right:0rem; bottom:0rem; background-color:lightblue; padding:10px; border:2px solid black;">Here's a fixed position div!</div>
+
+---
+
+## `position: sticky`
+
+Element can switch between relative and fixed position, depending on how far you have scrolld in the page. This is useful for making things like headers that stay at the top of the page after you scroll past them.
+
+We'll look at this one in depth later; it's a bit more complex.
+
+---
+
+## Review:
+
+What is the difference between `position: relative` and `position: absolute`?
+
+---
+
+- `relative` positions the element relative to its normal position in the document flow
+- `absolute` positions the element relative to the nearest positioned ancestor (or the page if none)
 
 ---
 
@@ -594,7 +909,7 @@ div {
 
 ### `z-index`
 
-Controls stacking order.
+Controls stacking order. Note that `z-index` only works on positioned elements (`position` set to something other than `static`).
 
 ```css
 div {
@@ -602,36 +917,4 @@ div {
 }
 ```
 
-⬆️ Higher values appear on top.
-
----
-
-### Flexbox Basics
-
-Arrange items in a row or column.
-
-```css
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-```
-
-🧩 Key props: `justify-content`, `align-items`, `flex-wrap`, `flex-direction`.
-
----
-
-### Grid Basics
-
-Divide layout into rows & columns.
-
-```css
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-}
-```
-
-🔲 Key props: `grid-template-columns`, `grid-template-rows`, `gap`, `grid-area`.
+Higher values appear on top. You can also use negative values.
