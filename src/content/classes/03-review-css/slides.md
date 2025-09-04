@@ -878,7 +878,14 @@ div {
 
 Element can switch between relative and fixed position, depending on how far you have scrolld in the page. This is useful for making things like headers that stay at the top of the page after you scroll past them.
 
-We'll look at this one in depth later; it's a bit more complex.
+We usually use this one in combination with `top: 0;` to make an element stick to the top of the viewport.
+
+````css
+header {
+  position: sticky;
+  top: 0;
+}
+```
 
 ---
 
@@ -903,7 +910,7 @@ div {
   top: 10px;
   left: 20px;
 }
-```
+````
 
 ---
 
