@@ -2,15 +2,25 @@
 import Layout from "../layouts/Layout.astro";
 import Assignment from "../components/Assignment.astro";
 import { getCollection } from "astro:content";
+import lodash from "lodash";
 
 const assignments = await getCollection("assignments");
-const assignmentsSorted = assignments.sort((a, b) => {
-  if (a.data.due === b.data.due) {
-    return 0;
-  }
-  const isOlder = new Date(b.data.due) < new Date(a.data.due);
-  return isOlder ? -1 : 1;
-});
+// const assignmentsSorted = assignments.sort((a, b) => {
+//   if (a.data.due === b.data.due) {
+//     return 0;
+//   }
+//   const isOlder = new Date(b.data.due) < new Date(a.data.due);
+//   return isOlder ? -1 : 1;
+// });
+
+const assignmentsSorted = lodash.orderBy(
+  assignments,
+  [
+    (item) => new Date(item.data.due).getTime(),
+    (item) => new Date(item.data.created).getTime(),
+  ],
+  ["desc", "desc"]
+);
 ---
 
 <Layout title="Homework">
