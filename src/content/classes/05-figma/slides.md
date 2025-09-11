@@ -8,7 +8,7 @@ Let's make some Web Sites!
 
 ## Today in Class
 
-- Reviewing Homework
+- Reviewing Astro/GitHub/Codespaces
 - Setting up our sites on Netlify
 - Figma
   - Basic UI
@@ -27,4 +27,3 @@ Let's try to finish the homework for Monday instead. We'll go through a few of t
 # Deploying a site to Netlify
 
 For this to work, you will need to have your site in a GitHub repository, _and_ you will need a Netlify account (which is free).
-
