@@ -74,4 +74,25 @@ Now, you can go ahead and make changes to the page. When you save the file (Ctrl
 
 ## Committing and Pushing Changes
 
-When you're happy with your changes, you can commit them to your GitHub repository. Click the Source Control icon (the icon that looks like a branch) in the left sidebar. You should see a list of changed files. In the "Message" box at the top, type a brief description of your changes (for example, "Updated Assignment 01 title"). Then click the 'Commit' button.
+**Important: If you don't do this, your changes will not be saved, and they may disappear after a few days!**
+
+When you're happy with your changes, you can commit them to your GitHub repository. Click the Source Control icon (the icon that looks like a branch) in the left sidebar. You should see a list of changed files. In the "Message" box at the top, type a brief description of your changes (for example, "Updated Assignment 01 title"). Then click the 'Commit' button. After a few seconds, the button may change to "Sync Changes" - click it again to push your changes to GitHub.
+
+![Commit Message](./commit.jpg)
+![Sync Changes](./sync.jpg)
+
+If you get a popup with `Don't Show Again`, click the `Don't Show Again` button.
+
+## If your Site Breaks
+
+If you make a mistake in your code, Astro may refuse to render the page for you. This can actually be a good thing, as it will show you a message that can help fix the problem. If you see an Astro error message instead of your site, read the message, and look at the code sample it shows you. The message will often tell you where the problem is, and how to fix it.
+
+Sometimes, the Astro server may crash or stop working (usually if you make a more serious mistake in your code). You will know this has happened because you will get a browser error like 'This page isn't working'. To fix this, we will try stopping and restarting the development server.
+
+First, go back to the terminal in the Codespaces window. Stop the development server by pressing `Ctrl+C` in the terminal.
+
+Then, start it again by typing:
+
+```bash
+npm run dev
+```
