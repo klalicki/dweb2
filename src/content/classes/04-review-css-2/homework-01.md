@@ -7,6 +7,8 @@ due: 09/11/2025
 
 For this homework, you'll be building out a webpage using CSS. All of the HTML is provided for you. You shouldn't need to add or change any HTML, just the CSS.
 
+_Edit 9/10: Don't worry if you don't finish the whole thing; this is a complex assignment. Do as much as you can, and we will look at it together in class Thursday._
+
 ## Instructions:
 
 Here is the Figma design you'll be replicating:
