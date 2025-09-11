@@ -28,6 +28,12 @@ The first time you open your codespace, you will need to make sure the project s
 npm install
 ```
 
+or
+
+```bash
+npm i
+```
+
 This will take a minute or two to complete. Once the installation completes, you will be able to start the development server.
 
 ### Starting the Development Server
