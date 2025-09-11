@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { render } from "astro:content";
 
 const { slug } = Astro.params;
 
@@ -13,10 +14,13 @@ export async function getStaticPaths() {
 }
 
 const resource = await getEntry("resources", slug);
-const resourceText = resource?.body;
+if (!resource) {
+  throw new Error(`Resource not found for slug: ${slug}`);
+}
+const { Content } = await render(resource);
 ---
 
 <Layout title={resource?.data.title || "Article"}>
   <h1>{resource?.data.title}</h1>
-  <Fragment set:html={resourceText} />
+  <Content />
 </Layout>
