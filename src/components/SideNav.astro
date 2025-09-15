@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-
+import students from "../content/students.js";
 const lessons = await getCollection("lessons");
 
 const projects = await getCollection("projects");
@@ -40,6 +40,8 @@ const lessonsSorted = lessons.sort((a, b) => {
         <a href={`/resources/${resource.id}`}>{resource.data.title}</a>
       ))
     }
+    <h2>Students</h2>
+    {students.map((student) => <a href={student.url}>{student.name}</a>)}
   </div>
 </nav>
 
@@ -48,6 +50,7 @@ const lessonsSorted = lessons.sort((a, b) => {
     display: flex;
     flex-direction: column;
     text-align: center;
+    overflow-y: auto;
   }
   a {
     padding: 0.5rem;
@@ -59,8 +62,8 @@ const lessonsSorted = lessons.sort((a, b) => {
     left: 0px;
     right: 0px;
     height: 100%;
-    overflow-y: auto;
     padding: 1rem;
+    /* overflow-y: auto; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,7 +103,7 @@ const lessonsSorted = lessons.sort((a, b) => {
       height: 100vh;
       overflow-y: auto;
       width: var(--size-sidenav-width);
-      padding: 1rem;
+      /* padding: 1rem; */
       border-right: 1px solid var(--color-secondary);
     }
 
