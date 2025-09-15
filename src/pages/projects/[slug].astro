@@ -1,7 +1,8 @@
 ---
 import { Code } from "astro/components";
-import { getCollection, getEntry } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import Assignment from "../../components/Assignment.astro";
 
 const { slug } = Astro.params;
 
@@ -15,21 +16,31 @@ export async function getStaticPaths() {
 
 const project = await getEntry("projects", slug);
 const projectText = project?.body;
-
+console.log(slug);
 const assignments = await getCollection("assignments");
 const sortedAssignments = assignments
-  .filter((assignment) => assignment.data.project === slug)
+  .filter((assignment) => {
+    const projectId = assignment?.data?.project?.id || "";
+    console.log(projectId, slug);
+    return projectId === slug;
+  })
   .sort((a, b) => {
     return b.data.due.valueOf() - a.data.due.valueOf();
   });
+
+const { Content } = await render(project);
 ---
 
 <Layout title={project?.data.title || "Project"}>
   <h1>{project?.data.title}</h1>
   <!-- <Code code={JSON.stringify(sortedAssignments, null, 2)} lang="json" /> -->
-  <Fragment set:html={projectText} />
+  <Content />
   <h2>Project Assignments</h2>
-  <ul>
-    <!-- TODO place the full text of each assignment here, with a link back to the class it originally came from -->
-  </ul>
+  <div class="assignments-group">
+    {
+      sortedAssignments.map((assignment) => (
+        <Assignment assignment={assignment} />
+      ))
+    }
+  </div>
 </Layout>
