@@ -5,31 +5,8 @@ due: 09/22/2025
 
 ## Make a component in Astro
 
-1. Create a new file in `src/components` called `MyComponent.astro`
-2. Add some HTML to it, like a simple card:
+For this homework, make a new component in Astro, and use it somewhere in your site - either on the homepage, or on your Project 1 Proposal page.
 
-   ```astro
-   ---
-   ---
-   <div class="card">
-     <h2>This is my component!</h2>
-     <slot />
-   </div>
-   ```
+Use a `prop` and/or a `<slot/>` on your component!
 
-   Use the `<slot />` tag to allow content to be placed inside the component when it's used.
-
-3. Now, use your component a few times in a page, like `src/pages/index.astro`:
-
-   ```astro
-
-   ---
-   import MyComponent from '../components/MyComponent.astro';
-   ---
-   <MyComponent>
-     <p>Here's some stuff inside my first component.</p>
-   </MyComponent>
-   <MyComponent>
-     <p>Here's some stuff inside my second component.</p>
-   </MyComponent>
-   ```
+[See the article on making components with Astro for reference.](/resources/making-components-with-astro)
