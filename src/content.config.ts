@@ -22,7 +22,11 @@ const lessons = defineCollection({
       return entry.split("/")[0];
     },
   }),
-  schema: z.object({ title: z.string(), date: z.date({ coerce: true }) }),
+  schema: z.object({
+    title: z.string(),
+    date: z.date({ coerce: true }),
+    recording: z.string().url().optional(),
+  }),
 });
 const slides = defineCollection({
   loader: glob({

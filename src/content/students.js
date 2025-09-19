@@ -17,6 +17,7 @@ const students = [
   { name: "Maddie", url: "https://maddie-dw2.netlify.app" },
   { name: "Myrkos", url: "https://myrkos-dw2.netlify.app" },
   { name: "Miles", url: "https://miles-dw2.netlify.app" },
+  { name: "Emily", url: "https://emilya-dw2.netlify.app" },
 ];
 
 export default students;

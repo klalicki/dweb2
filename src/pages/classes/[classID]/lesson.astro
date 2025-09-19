@@ -3,6 +3,8 @@ import { getCollection, getEntry, render } from "astro:content";
 import SlidesButton from "../../../components/SlidesButton.astro";
 import Layout from "../../../layouts/Layout.astro";
 import Assignment from "../../../components/Assignment.astro";
+import LockIcon from "../../../components/LockIcon.astro";
+
 const { classID } = Astro.params;
 
 console.log("classID", classID);
@@ -28,12 +30,26 @@ const { Content, headings } = await render(lesson);
 
 <Layout title={lesson?.data.title || "Lesson"}>
   <h1>{lesson?.data.title}</h1>
-  <nav class="page-nav">
+  <!-- <nav class="page-nav">
     <SlidesButton classId={classID} />
     <a class="btn" href="#lesson">Lesson</a>
     <a class="btn" href="#homework">Homework</a>
-  </nav>
-  <Content id="lesson" />
+  </nav> -->
+
+  <h2 id="lesson">Lesson</h2>
+
+  <div class="page-nav">
+    <SlidesButton classId={classID} />
+
+    {
+      lesson?.data.recording && (
+        <a href={lesson?.data.recording} class="btn">
+          Watch Recording <LockIcon />
+        </a>
+      )
+    }
+  </div>
+  <Content />
   <h2 id="homework">Homework</h2>
   <div class="assignments-group">
     {assignments.map((assignment) => <Assignment assignment={assignment} />)}
@@ -45,6 +61,5 @@ const { Content, headings } = await render(lesson);
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    padding: 0.5rem 0;
   }
 </style>
