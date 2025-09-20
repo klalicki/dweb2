@@ -314,3 +314,7 @@ We can then use the imported content as a component:
 ```astro
 <ArticleContent/>
 ```
+
+---
+
+This means that we can write larger pieces of text content in Markdown, and keep our Astro files focused on layout and structure, making them easier to read.
