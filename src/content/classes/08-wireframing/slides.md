@@ -252,3 +252,65 @@ turns into:
   <li>Item 3</li>
 </ol>
 </div>
+
+---
+
+## Links
+
+We can create links using `[link text](URL)`
+
+```markdown
+This is a [link to Google](https://www.google.com).
+```
+
+turns into:
+
+<div class="text-preview">
+<p>This is a <a href="https://www.google.com">link to Google</a>.</p>
+</div>
+---
+
+## Images
+
+We can add images using `![alt text](image URL)`
+
+```markdown
+![A kitten](https://cdn2.thecatapi.com/images/3rt.jpg)
+```
+
+turns into:
+
+<div class="text-preview">
+  <img src="https://cdn2.thecatapi.com/images/3rt.jpg" alt="A kitten" width="300"/>
+</div>
+
+---
+
+## Other Markdown Features
+
+There are a handful of other, less common, features in Markdown:
+
+https://www.markdownguide.org/cheat-sheet/
+
+---
+
+## Why Markdown?
+
+- easy to read and write
+- each feature corresponds directly to an HTML element - perfect for web content
+
+---
+
+## Using Markdown in Astro
+
+In Astro, we can create `.md` files containing Markdown content, and import them as components into our pages.
+
+```js
+import { Content as ArticleContent } from "../articles/article1.md";
+```
+
+We can then use the imported content as a component:
+
+```astro
+<ArticleContent/>
+```
