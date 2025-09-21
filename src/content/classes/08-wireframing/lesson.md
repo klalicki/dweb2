@@ -1,6 +1,6 @@
 ---
-title: Sep 18 (R)
-date: 09/18/2025
+title: Sep 22 (M)
+date: 09/22/2025
 ---
 
 - Reviewing Homework

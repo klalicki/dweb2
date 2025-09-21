@@ -88,7 +88,35 @@ Markdown is designed to be easy to read and write for people, while also being e
 
 ---
 
-## Basic Markdown Syntax: Text
+## Markdown Syntax
+
+Markedown is designed to be pretty simple to use, and easy to read even in its raw form.
+
+```markdown
+## A Section of Text
+
+This is some _italic_ text, and this is some **bold** text.
+
+- Here is a bulleted list
+- With multiple items
+- Like this
+```
+
+turns into:
+
+<div class="text-preview">
+<h2>A Section of Text</h2>
+<p>This is some <em>italic</em> text, and this is some <strong>bold</strong> text.</p>
+<ul>
+  <li>Here is a bulleted list</li>
+  <li>With multiple items</li>
+  <li>Like this</li>
+</ul>
+</div>
+
+---
+
+## Text
 
 Plain text is written as-is. We can create a new paragraph by adding a blank line between lines of text.
 
