@@ -10,7 +10,8 @@ Let's make some Web Sites!
 
 - Reviewing Homework
 - Review Components
-- More Advanced Components
+- More Advanced Components (Named Slots)
+- Markdown
 - Wireframing
 - Individual Meetings: Project 1 Ideas
 
@@ -45,6 +46,12 @@ This makes it easier to find and update specific parts of our code, since we can
   <Footer/>
 </Layout>
 ```
+
+---
+
+## Review - Let's Make a Component
+
+We're going to make an Astro component for an `Accordion` (expandable/collapsible section) using the `<details>` and `<summary>` HTML elements.
 
 ---
 
@@ -346,3 +353,33 @@ We can then use the imported content as a component:
 ---
 
 This means that we can write larger pieces of text content in Markdown, and keep our Astro files focused on layout and structure, making them easier to read.
+
+---
+
+## Wireframing
+
+Wireframing is a way to plan out the structure and layout of a website before we start building it.
+
+Wireframes are simple, low-fidelity sketches/diagrams that show the basic layout and structure of a webpage, without any detailed design elements.
+
+---
+
+## Goals for Wireframing
+
+- figure out rough layout/structure/flow of site
+- identify key components we will need to design/build
+- plan how sections of the site will change between desktop and mobile views
+
+---
+
+## How to Wireframe
+
+Today we'll look at Balsamiq, a popular wireframing tool.
+
+You can also use Figma, Miro, or even just pen and paper!
+
+---
+
+## Individual Meetings
+
+Let's discuss your project idea and content.
