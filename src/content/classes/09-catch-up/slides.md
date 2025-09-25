@@ -10,6 +10,7 @@ Let's make some Web Sites!
 
 - Reviewing Project Process
 - Catch up on everything
+- In Progress Feedback Session(s)
 
 ---
 
@@ -27,7 +28,7 @@ Let's make some Web Sites!
 
 ## Style Tiles
 
-Sometimes we want to _explore_ the visual design of a site without committing to creating a full mockup. 
+Sometimes we want to _explore_ the visual design of a site without committing to creating a full mockup.
 
 Style tiles let us play with combinations of colors, fonts, and interface elements to create a sense of the visual design direction for our site.
 
