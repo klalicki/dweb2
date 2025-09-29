@@ -13,6 +13,8 @@ Let's make some Web Sites!
 - Starting a New Project in Astro
 - CSS Resets
 - Fonts in Astro
+- Named Slots
+- Advanced Component Patterns
 
 ---
 
@@ -253,7 +255,7 @@ When we use this component, everything we put between the opening and closing ta
 
 ---
 
-However, we can also create components with multiple named slots. This can be useful if you want to create a component that has multiple distinct areas where content can be inserted.
+We can also create components with _named slots._ This can be useful if you want to create a component that has multiple distinct areas where content can be inserted.
 
 ```astro
 <div class="card">
@@ -278,24 +280,50 @@ When we use this component, we can specify which content goes into which slot by
 
 ---
 
-## Composing Components
+## Combining Named and Default Slots
+
+We can also combine named slots with a default (unnamed) slot. The default slot will end up with any content that doesn't have a specific slot name.
+
+```astro
+<div class="card">
+   <div class="card-image">
+      <slot name="header" />
+   </div>
+   <div class="card-content">
+      <slot  />
+   </div>
+</div>
+```
+
+```astro
+<Card>
+   <Image slot="header" src="/path/to/image.jpg" alt="Card Image" />
+   <h2>Card Title</h2>
+   <p>This is the content of the card.</p>
+</Card>
+```
+
+---
+
+## Component Patterns
 
 We have several different ways to combine components in Astro, depending on how flexible they need to be. Here are a few common patterns:
 
 ---
 
-## Single Slot Components
+## Using Props for Most Content
 
-Simple components that wrap content with a single slot. Any other content must be passed in as properties.
+We can structure our components to use props for most of the content, and a single slot for any additional content.
 
 ```astro
-const {title, imgSrc} = Astro.props;
+const {title, imgSrc, ctaUrl} = Astro.props;
 &#8208&#8208&#8208
 <div class="card-container">
    <Image src={imgSrc} alt="" />
    <div class="card-content">
       <h2>{title}</h2>
       <slot />
+      <CTAButton url={ctaUrl}>Learn More</CTAButton>
    </div>
 </div>
 
@@ -304,9 +332,42 @@ const {title, imgSrc} = Astro.props;
 Here's how we would use this component:
 
 ```astro
-<Card title="Card Title" imgSrc={myImage}>
+<Card title="Card Title" imgSrc={myImage} ctaUrl={"https://example.com"}>
    <p>This is the content of the card.</p>
-   <CTAButton>Click Me</CTAButton>
 </Card>
 
 ```
+
+---
+
+## Using Components for Everything
+
+For maximum flexibility, we can use components for everything, including the title, image, and button.
+
+```astro
+<div class="card-container">
+   <slot name="image" />
+   <div class="card-content">
+      <slot/>
+   </div>
+</div>
+```
+
+```astro
+<Card>
+   <Image slot="image" src={myImage} alt="" />
+   <CardTitle>Card  Title</CardTit>
+   <p>This is the content of the card.</p>
+   <CTAButton url={"https://example.com"}/>
+</Card>
+```
+
+---
+
+The structure of each component should be determined by how much flexibility you need. If the content is always going to be the same, using props is usually simpler. If the content can vary widely, using slots and components gives you more control.
+
+For example, if you have multiple types of 'cards' that contain different types of content but the same basic layout, using slots would be a good choice.
+
+---
+
+## Work time!
