@@ -20,7 +20,7 @@ Let's make some Web Sites!
 
 ---
 
-![Labubus](labubu.jpg)
+![Labubu Big Into Energy blind box](labubu.jpg)
 
 ---
 
@@ -178,11 +178,21 @@ For this project, we're going to want to put it in its own GitHub repository. Th
 
 https://github.com/klalicki/astro-starter
 
+---
+
+## CSS Resets
+
+Many browsers have their own default styles for HTML elements. This can lead to inconsistencies in how a website looks across different browsers. It's usually a good idea to start with a CSS reset or a CSS "normalize" stylesheet to create a consistent baseline.
+
+---
+
 ## Fonts in Astro
 
 We can, of course, use regular Google Fonts links and paste them into our `<head>`.
 
 However, we also have a neat option to install and import them directly (which theoretically should load a bit faster). We will use [Fontsource](https://fontsource.org/) for this.
+
+---
 
 ## Using Fontsource
 
@@ -198,4 +208,105 @@ npm install @fontsource/roboto
 
 ```js
 import "@fontsource/roboto";
+```
+
+---
+
+## A resource for choosing Google Fonts:
+
+https://fontmixer.app/
+
+---
+
+4. Finally, we can use the font in our CSS:
+
+```css
+body {
+  font-family: "Roboto", sans-serif;
+}
+```
+
+---
+
+## Slots in Astro
+
+In Astro, we can create components that have "slots" - placeholders where we can insert content when we use the component.
+
+---
+
+So far, we have created components with one 'slot' that gets _all_ the content passed to it.
+
+```astro
+<div class="container">
+  <slot />
+</div>
+```
+
+When we use this component, everything we put between the opening and closing tags of the component gets passed into that one slot.
+
+```astro
+<Container>
+  <h1>Hello World</h1>
+  <p>This is some content inside the container.</p>
+</Container>
+```
+
+---
+
+However, we can also create components with multiple named slots. This can be useful if you want to create a component that has multiple distinct areas where content can be inserted.
+
+```astro
+<div class="card">
+   <div class="card-image">
+      <slot name="header" />
+   </div>
+   <div class="card-content">
+      <slot name="content" />
+   </div>
+</div>
+```
+
+When we use this component, we can specify which content goes into which slot by using the `slot` attribute.
+
+```astro
+<Card>
+   <Image slot="header" src="/path/to/image.jpg" alt="Card Image" />
+   <h2 slot="content">Card Title</h2>
+   <p slot="content">This is the content of the card.</p>
+</Card>
+```
+
+---
+
+## Composing Components
+
+We have several different ways to combine components in Astro, depending on how flexible they need to be. Here are a few common patterns:
+
+---
+
+## Single Slot Components
+
+Simple components that wrap content with a single slot. Any other content must be passed in as properties.
+
+```astro
+const {title, imgSrc} = Astro.props;
+&#8208&#8208&#8208
+<div class="card-container">
+   <Image src={imgSrc} alt="" />
+   <div class="card-content">
+      <h2>{title}</h2>
+      <slot />
+   </div>
+</div>
+
+```
+
+Here's how we would use this component:
+
+```astro
+<Card title="Card Title" imgSrc={myImage}>
+   <p>This is the content of the card.</p>
+   <CTAButton>Click Me</CTAButton>
+</Card>
+
 ```
