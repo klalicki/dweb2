@@ -174,6 +174,10 @@ For this project, we're going to want to put it in its own GitHub repository. Th
 
 ---
 
+## Starter Template
+
+https://github.com/klalicki/astro-starter
+
 ## Fonts in Astro
 
 We can, of course, use regular Google Fonts links and paste them into our `<head>`.
