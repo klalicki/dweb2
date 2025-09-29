@@ -356,13 +356,15 @@ For maximum flexibility, we can use components for everything, including the tit
 ```astro
 <Card>
    <Image slot="image" src={myImage} alt="" />
-   <CardTitle>Card  Title</CardTit>
+   <CardTitle>Card  Title</CardTitle>
    <p>This is the content of the card.</p>
    <CTAButton url={"https://example.com"}/>
 </Card>
 ```
 
 ---
+
+## Choosing a Pattern
 
 The structure of each component should be determined by how much flexibility you need. If the content is always going to be the same, using props is usually simpler. If the content can vary widely, using slots and components gives you more control.
 
