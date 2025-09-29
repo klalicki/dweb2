@@ -214,12 +214,6 @@ import "@fontsource/roboto";
 
 ---
 
-## A resource for choosing Google Fonts:
-
-https://fontmixer.app/
-
----
-
 4. Finally, we can use the font in our CSS:
 
 ```css
@@ -227,6 +221,12 @@ body {
   font-family: "Roboto", sans-serif;
 }
 ```
+
+---
+
+## A resource for choosing Google Fonts:
+
+https://fontmixer.app/
 
 ---
 
