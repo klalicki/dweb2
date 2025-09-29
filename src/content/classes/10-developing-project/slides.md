@@ -11,6 +11,16 @@ Let's make some Web Sites!
 - File Paths
 - Images in Astro
 - Starting a New Project in Astro
+- CSS Resets
+- Fonts in Astro
+
+---
+
+## But First...
+
+---
+
+![Labubus](labubu.jpg)
 
 ---
 
@@ -123,17 +133,65 @@ This give us a lot of neat features - we can generate multiple sizes of an image
 
 ## Images in Astro: Option 2 (the Astro way)
 
-1. Place your image in the `src/` directory (or a subdirectory). We often will create a directory like `src/assets/images/` for this purpose.
-2. Import the image into your component (usually using a relative path)
+1. Place your image somewhere in the `src/` directory. We often will use a folder like `src/assets/images/`
+2. Import the image into your component (usually using a relative path). We also need to import the Image component from `astro:assets`.
 
 ```js
+import { Image } from "astro:assets";
 import MyPhoto from "../../assets/images/my-photo.jpg";
 ```
 
 3. Import the `Image` component from `astro:assets` and use it to display the image.
 
-```astro
-import { Image } from 'astro:assets';
----
+```jsx
 <Image src={MyPhoto} alt="A description of the image" />
+```
+
+---
+
+This is a bit weird at first, but it gives us a lot of power and flexibility.
+
+[Link to Astro Image documentation](https://docs.astro.build/en/reference/modules/astro-assets/)
+
+It gives us a neat set of properties to create responsive images that adapt to different screen sizes.
+
+```astro
+<Image
+   src={MyPhoto}
+   alt="A description of the image"
+   layout="full-width"
+   fit="cover"
+/>
+```
+
+Most importantly, it means we don't have to worry about image sizes.
+
+---
+
+## Starting a New Project in Astro
+
+For this project, we're going to want to put it in its own GitHub repository. This will mean we can host it at its own domain (which will be easier to share or put in your portfolio later).
+
+---
+
+## Fonts in Astro
+
+We can, of course, use regular Google Fonts links and paste them into our `<head>`.
+
+However, we also have a neat option to install and import them directly (which theoretically should load a bit faster). We will use [Fontsource](https://fontsource.org/) for this.
+
+## Using Fontsource
+
+1. Find the font you are looking for on [Fontsource](https://fontsource.org/).
+
+2. Install the font package using npm. For example, to install the "Roboto" font:
+
+```bash
+npm install @fontsource/roboto
+```
+
+3. Then, we can import the file. We should do this in a component that will be on every page - such as `Theme.astro`
+
+```js
+import "@fontsource/roboto";
 ```
