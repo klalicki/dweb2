@@ -18,7 +18,9 @@ Let's make some Web Sites!
 
 On computers, files are typically organized in a tree-like structure of folders/directories.
 
-When we link to files (like images, stylesheets, or other pages) we need to specify the _path_ to that file.
+We often use the terms 'up' and 'down' to describe moving through this structure. 'Up' means going to a parent directory, while 'down' means going into a subdirectory.
+
+We need to be able to specify the location of files in order to link to them or import them into our code.
 
 ---
 
@@ -71,6 +73,16 @@ We often use relative paths when importing files in Astro.
 
 ---
 
+## Going Up and Down
+
+When using relative paths, we can navigate the directory structure by going "up" or "down".
+
+We can use `../` to move up one level in the directory structure.
+
+Luckily, our code editor will usually help us with this by providing autocomplete suggestions when we start typing a path, and listing the available files and directories.
+
+---
+
 ## When to use the `public/` Directory
 
 - Static assets that won't be processed by Astro (usually PDFs or other files you want to serve as-is).
@@ -98,3 +110,30 @@ In Astro, we have two different options for using images:
 ```
 
 This looks for `public/images/my-photo.jpg`.
+
+---
+
+## The Astro Way
+
+We can also import images directly with Astro. This will allow Astro to optimize the image for us (resize, compress, convert to modern formats, etc).
+
+This give us a lot of neat features - we can generate multiple sizes of an image for different screen sizes
+
+---
+
+## Images in Astro: Option 2 (the Astro way)
+
+1. Place your image in the `src/` directory (or a subdirectory). We often will create a directory like `src/assets/images/` for this purpose.
+2. Import the image into your component (usually using a relative path)
+
+```js
+import MyPhoto from "../../assets/images/my-photo.jpg";
+```
+
+3. Import the `Image` component from `astro:assets` and use it to display the image.
+
+```astro
+import { Image } from 'astro:assets';
+---
+<Image src={MyPhoto} alt="A description of the image" />
+```
