@@ -4,6 +4,8 @@ import Assignment from "../components/Assignment.astro";
 import { getCollection } from "astro:content";
 import lodash from "lodash";
 
+
+
 const assignments = await getCollection("assignments");
 // const assignmentsSorted = assignments.sort((a, b) => {
 //   if (a.data.due === b.data.due) {
