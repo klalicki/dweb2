@@ -5,6 +5,7 @@ import SideNav from "../components/SideNav.astro";
 import SkipLink from "../components/SkipLink.astro";
 import Theme from "../components/Theme.astro";
 import { ClientRouter } from "astro:transitions";
+import Banner from "../components/Banner.astro";
 ---
 
 <!doctype html>
@@ -23,6 +24,7 @@ import { ClientRouter } from "astro:transitions";
     </header>
 
     <main id="main-content">
+      <Banner />
       <Container>
         <slot />
       </Container>
