@@ -1,6 +1,6 @@
 ---
-title: Sep 29 (M)
-date: 09/29/2025
+title: Oct 6 (M)
+date: 10/06/2025
 ---
 
 Class Agenda:
