@@ -10,7 +10,7 @@ Let's make some Web Sites!
 
 - Midterm check-in
 - Developing with AI
-- Finish Project 1
+- Work on Project 1
 
 ---
 
