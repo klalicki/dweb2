@@ -38,4 +38,4 @@ _...or would you?_
 
 ## Let's work on our projects!
 
-They will be due on Thursday
+They will be due _next_ Thursday, October 16
